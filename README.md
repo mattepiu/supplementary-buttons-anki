@@ -175,8 +175,9 @@ Markdown yet, have a look at [this tutorial](http://markdowntutorial.com/).
 ##### Enable Markdown
 
 Markdown is disabled by default, to keep this add-on as modularised as
-possible. To enable it, go to settings and tick the checkbox next to
-"Markdown". Restart Anki to complete the process.
+possible. To enable it, go to *Tools &gt; Power Format Pack add-on (options)
+&gt; Options... &gt; Markdown* and tick the checkbox next to "Markdown".
+Restart Anki to complete the process.
 
 ##### Using Markdown
 
@@ -340,7 +341,7 @@ on the shortcut and press the desired keyboard combination.
 
 Be aware that all keyboard combinations will be accepted, although some of them
 won't actually work in practice. If you assign the keyboard shortcut 'A' to a
-certain functionality, for example, the shortcut won't actually do anything. 
+certain functionality, for example, the shortcut won't actually do anything.
 
 Also keep in mind that there is no check for duplicate keybindings. This means
 that when a keybinding is already taken by either your OS, Anki, this add-on, or
