@@ -1,5 +1,9 @@
 # Power Format Pack
 
+## Only works with Anki 2.0.*
+
+[There is no support for Anki 2.1](https://github.com/Neftas/supplementary-buttons-anki/issues/96), and most likely, there never will be.
+
 ## Formatting buttons
 
 This add-on adds the following supplementary formatting buttons to Anki:
