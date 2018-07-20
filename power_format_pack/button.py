@@ -20,7 +20,7 @@
 from PyQt4 import QtGui, QtCore
 from power_format_pack.prefhelper import PrefHelper
 import os
-import const
+from . import const
 
 
 class Button(QtGui.QPushButton):

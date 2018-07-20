@@ -21,11 +21,11 @@ import os
 
 from PyQt4 import QtGui, QtCore, QtWebKit
 
-import const
-import preferences
-import utility
+from . import const
+from . import preferences
+from . import utility
 from power_format_pack.qt.controllers.keybindings import FormKeyBindings
-from prefhelper import PrefHelper
+from .prefhelper import PrefHelper
 
 
 class Options(QtGui.QMenu):
@@ -124,7 +124,7 @@ class Options(QtGui.QMenu):
                                 "doc_start.html")
 
         if not os.path.exists(filename):
-            print "FILENAME {!r} DOES NOT EXIST".format(filename)
+            print(("FILENAME {!r} DOES NOT EXIST".format(filename)))
             return
 
         help_buttons = QtGui.QDialogButtonBox(dialog)
@@ -278,7 +278,7 @@ class Options(QtGui.QMenu):
             md_style_combo.addItem(style)
 
         all_items_in_combo = \
-            [md_style_combo.itemText(i) for i in xrange(md_style_combo.count())]
+            [md_style_combo.itemText(i) for i in range(md_style_combo.count())]
         current_style = self.p.get(const.MARKDOWN_SYNTAX_STYLE)
         current_style = utility.prettify_option_name(current_style)
         if current_style and current_style in all_items_in_combo:
@@ -382,7 +382,7 @@ class Options(QtGui.QMenu):
 
     def init_button_options(self):
         grid = QtGui.QGridLayout()
-        l = [k for k in self.p.keys() if k not in (const.CODE_CLASS,
+        l = [k for k in list(self.p.keys()) if k not in (const.CODE_CLASS,
                                                    const.LAST_BG_COLOR,
                                                    const.FIXED_OL_TYPE,
                                                    const.FIXED_UL_TYPE,

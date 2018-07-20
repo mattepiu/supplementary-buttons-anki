@@ -275,13 +275,13 @@ class PostgresConsoleLexer(Lexer):
         lines = lookahead(line_re.findall(data))
 
         # prompt-output cycle
-        while 1:
+        while True:
 
             # consume the lines of the command: start with an optional prompt
             # and continue until the end of command is detected
             curcode = ''
             insertions = []
-            while 1:
+            while True:
                 try:
                     line = next(lines)
                 except StopIteration:
@@ -319,7 +319,7 @@ class PostgresConsoleLexer(Lexer):
 
             # Emit the output lines
             out_token = Generic.Output
-            while 1:
+            while True:
                 line = next(lines)
                 mprompt = re_prompt.match(line)
                 if mprompt is not None:

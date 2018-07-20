@@ -21,8 +21,8 @@ import json
 import BeautifulSoup
 
 from PyQt4 import QtGui, QtCore
-import utility
-import const
+from . import utility
+from . import const
 
 
 class Heading(object):
@@ -63,7 +63,7 @@ class Heading(object):
 
         self.editor_instance.web.eval(
                 "document.execCommand('insertHTML', false, %s);"
-                % json.dumps(unicode(result_soup)))
+                % json.dumps(str(result_soup)))
 
         self.cleanup_headings()
 
@@ -133,7 +133,7 @@ class Heading(object):
         dialog.setLayout(vbox)
 
         if dialog.exec_() == QtGui.QDialog.Accepted:
-            text = unicode(text_line_edit.text())
+            text = str(text_line_edit.text())
             size_heading = radio_button_group.id(
                     radio_button_group.checkedButton())
             heading_tag = "h" + str(size_heading)
@@ -148,10 +148,10 @@ class Heading(object):
                             "wrap('{0}', '{1}')".format(start_tag, end_tag))
                     self.cleanup_headings()
                 else:
-                    result = u"{0}{1}{2}".format(start_tag, text, end_tag)
+                    result = "{0}{1}{2}".format(start_tag, text, end_tag)
                     self.editor_instance.web.eval(
                             "document.execCommand('insertHTML', false, %s);"
-                            % json.dumps(unicode(result)))
+                            % json.dumps(str(result)))
 
     def cleanup_headings(self):
         """
@@ -171,5 +171,5 @@ class Heading(object):
                     match.parent.replaceWithChildren()
 
         self.editor_instance.note.fields[self.editor_instance.currentField] = \
-            unicode(soup)
+            str(soup)
         self.editor_instance.loadNote()

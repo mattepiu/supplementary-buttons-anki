@@ -15,8 +15,8 @@ License: [BSD](http://www.opensource.org/licenses/bsd-license.php)
 
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 
 import platform
 
@@ -33,22 +33,22 @@ try:
     try:
         del pygments
     except NameError as e:
-        print e
+        print(e)
 
     for package in sys.path:
         if isWin:
             package = package.decode(sys.getfilesystemencoding())
 
         try:
-            if package.endswith(u"addons"):
+            if package.endswith("addons"):
                 if isWin:
-                    path = os.path.join(package, u"power_format_pack")
+                    path = os.path.join(package, "power_format_pack")
                     sys.path.insert(0, path.encode(sys.getfilesystemencoding()))
                 else:
-                    sys.path.insert(0, os.path.join(package, u"power_format_pack"))
+                    sys.path.insert(0, os.path.join(package, "power_format_pack"))
                 break
         except (UnicodeDecodeError, UnicodeEncodeError) as e:
-            print e  # TODO: log error
+            print(e)  # TODO: log error
             raise ImportError
 
     from pygments import highlight
@@ -57,7 +57,7 @@ try:
 
     pygments = True
 except ImportError as e:
-    print e  # TODO: log error
+    print(e)  # TODO: log error
     pygments = False
 
 

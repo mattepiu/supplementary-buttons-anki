@@ -29,14 +29,14 @@ import time
 import BeautifulSoup
 from PyQt4 import QtGui
 
-import const
+from . import const
 from anki.utils import intTime, json, isMac
 from aqt.utils import isWin
-from html2text import html2text
-from html2text_overrides import escape_md_section_override
+from .html2text import html2text
+from .html2text_overrides import escape_md_section_override
 
 
-def validate_key_sequence(sequence, platform=u""):
+def validate_key_sequence(sequence, platform=""):
     """
     Check a string that contains a key sequence and determine whether it
     fulfills the key sequence contract: one non-modifier key, and optionaly
@@ -47,9 +47,9 @@ def validate_key_sequence(sequence, platform=u""):
     """
 
     if not sequence:
-        return u""
+        return ""
 
-    assert isinstance(sequence, unicode), "Input `sequence` not in Unicode"
+    assert isinstance(sequence, str), "Input `sequence` not in Unicode"
 
     modkeys = const.KEY_MODIFIERS
     # Mac OS X has a special modifier, the Cmd key
@@ -58,11 +58,11 @@ def validate_key_sequence(sequence, platform=u""):
     sequence = sequence.lower()
     # the plus and minus signs can also be part of the key sequence
     # not just serve as delimiters
-    if any(sequence.endswith(c) for c in u"+-"):
-        parts = split_string(sequence[:-1], u"+-")
+    if any(sequence.endswith(c) for c in "+-"):
+        parts = split_string(sequence[:-1], "+-")
         parts += list(sequence[-1:])
     else:
-        parts = split_string(sequence, u"+-")
+        parts = split_string(sequence, "+-")
     parts = filter_duplicates(parts)
     # sequence can only contain one function key and cannot be used
     # in combination with a character key
@@ -72,20 +72,20 @@ def validate_key_sequence(sequence, platform=u""):
         if word in const.KEYS_SEQUENCE:
             # f12+a
             if function_key_found:
-                return u""
+                return ""
             char_key_found = True
         if word in const.FUNCTION_KEYS:
             # f12+f11 or a+f12
             if function_key_found or char_key_found:
-                return u""
+                return ""
             function_key_found = True
     # sequence should contain at least one non-modifier key
     if all(word in modkeys for word in parts):
-        return u""
+        return ""
     for word in parts:
         # unknown modifiers or non-modifiers are not allowed
         if word not in modkeys + const.KEYS_SEQUENCE + const.FUNCTION_KEYS:
-            return u""
+            return ""
 
     return create_pretty_sequence(parts)
 
@@ -101,28 +101,28 @@ def create_pretty_sequence(sequence):
     """
 
     if not sequence:
-        return u""
+        return ""
 
     seq = sequence[:]
     pretty_sequence = list()
-    if u"ctrl" in sequence:
-        seq.remove(u"ctrl")
-        pretty_sequence.append(u"ctrl")
-    if u"meta" in sequence:
-        seq.remove(u"meta")
-        pretty_sequence.append(u"meta")
-    if u"shift" in sequence:
-        seq.remove(u"shift")
-        pretty_sequence.append(u"shift")
-    if u"alt" in sequence:
-        seq.remove(u"alt")
-        pretty_sequence.append(u"alt")
+    if "ctrl" in sequence:
+        seq.remove("ctrl")
+        pretty_sequence.append("ctrl")
+    if "meta" in sequence:
+        seq.remove("meta")
+        pretty_sequence.append("meta")
+    if "shift" in sequence:
+        seq.remove("shift")
+        pretty_sequence.append("shift")
+    if "alt" in sequence:
+        seq.remove("alt")
+        pretty_sequence.append("alt")
     pretty_sequence += seq
 
-    return u"+".join(x for x in pretty_sequence if x)
+    return "+".join(x for x in pretty_sequence if x)
 
 
-def check_user_keybindings(default_keybindings, user_keybindings, platform=u""):
+def check_user_keybindings(default_keybindings, user_keybindings, platform=""):
     """
     Check the correctness of the user keybindings. If not correct, the
     default binding will be used instead. Return a checked dictionary of
@@ -130,9 +130,9 @@ def check_user_keybindings(default_keybindings, user_keybindings, platform=u""):
     """
 
     validated_keybindings = dict()
-    for key, value in user_keybindings.iteritems():
-        assert isinstance(key, unicode), "Key `{!r}` is not Unicode".format(key)
-        assert isinstance(value, unicode), "Value `{!r}` is not Unicode".format(value)
+    for key, value in list(user_keybindings.items()):
+        assert isinstance(key, str), "Key `{!r}` is not Unicode".format(key)
+        assert isinstance(value, str), "Value `{!r}` is not Unicode".format(value)
         val_binding = validate_key_sequence(value, platform)
         if not val_binding:
             validated_keybindings[key] = default_keybindings.get(key)
@@ -150,8 +150,8 @@ def get_keybinding(keybindings, name_of_key):
     >>> get_keybinding({u"test": u"ctrl+alt+esc"}, u"test")
     u'Ctrl+Alt+Esc'
     """
-    keybinding = keybindings.get(name_of_key, u"")
-    return string.capwords(keybinding, u"+")
+    keybinding = keybindings.get(name_of_key, "")
+    return string.capwords(keybinding, "+")
 
 
 def strip_html_from_markdown(org_html, keep_empty_lines=False):
@@ -164,49 +164,49 @@ def strip_html_from_markdown(org_html, keep_empty_lines=False):
     """
 
     if not org_html:
-        return u""
+        return ""
 
-    assert isinstance(org_html, unicode), "Input `org_html` is not Unicode"
+    assert isinstance(org_html, str), "Input `org_html` is not Unicode"
 
     # disable the escaping of Markdown-sensitive characters
     html2text.escape_md_section = escape_md_section_override
     h2t = html2text.HTML2Text()
     h2t.body_width = 0
     md_text = h2t.handle(org_html)
-    clean_md = u""
+    clean_md = ""
     if keep_empty_lines:
         clean_md = md_text
     else:
         # remove white lines
-        for line in md_text.split(u"\n"):
+        for line in md_text.split("\n"):
             if line:
-                clean_md += (line + u"\n")
+                clean_md += (line + "\n")
 
     # undo the html2text escaping of dots (which interferes
     # with the creation of ordered lists)
-    dot_regex = re.compile(ur"(\d+)\\(\.\s)")
-    clean_md = re.sub(dot_regex, ur"\g<1>\g<2>", clean_md)
+    dot_regex = re.compile(r"(\d+)\\(\.\s)")
+    clean_md = re.sub(dot_regex, r"\g<1>\g<2>", clean_md)
 
     # this is needed to keep inner parentheses and whitespace in links and
     # images from prematurely ending the Markdown syntax; e.g.
     # ![](image (1).jpg) would otherwise break on the whitespace in the
     # filename and the inner parentheses, so we change it to
     # ![](image&#32;&#40;1&#41;.jpg) to prevent this from happening
-    left_paren_regex = re.compile(ur"\\\(")
+    left_paren_regex = re.compile(r"\\\(")
     clean_md = replace_link_img_matches(
-            left_paren_regex, u"&#40;", clean_md)
-    right_paren_regex = re.compile(ur"\\\)")
+            left_paren_regex, "&#40;", clean_md)
+    right_paren_regex = re.compile(r"\\\)")
     clean_md = replace_link_img_matches(
-            right_paren_regex, u"&#41;", clean_md)
-    whitespace_regex = re.compile(ur"\s+")
+            right_paren_regex, "&#41;", clean_md)
+    whitespace_regex = re.compile(r"\s+")
     clean_md = replace_link_img_matches(
-            whitespace_regex, u"&#32;", clean_md)
+            whitespace_regex, "&#32;", clean_md)
 
-    assert isinstance(clean_md, unicode)
+    assert isinstance(clean_md, str)
     return clean_md
 
 
-def get_indices(haystack, needle, needle_end=u""):
+def get_indices(haystack, needle, needle_end=""):
     """
     Return a list of lists with the start and end positions of the
     needle(s).
@@ -271,14 +271,13 @@ def replace_link_img_matches(regex, new, s):
     u'![this `was a` triumph](i&#32;am&#32;making)'
     """
 
-    assert isinstance(s, unicode), "Input `s` is not Unicode"
+    assert isinstance(s, str), "Input `s` is not Unicode"
 
     # don't escape anything when we're in a (inline) code block
     positions1 = get_indices(s, "`")
     positions3 = get_indices(s, "```")
     filter_indices(positions1, positions3)
-    positions_combined = filter(lambda x: x[0] > -1 and x[1] > -1,
-                                positions1 + positions3)
+    positions_combined = [x for x in positions1 + positions3 if x[0] > -1 and x[1] > -1]
 
     result = re.finditer(const.IS_LINK_OR_IMG_REGEX, s)
     if result:
@@ -301,7 +300,7 @@ def replace_link_img_matches(regex, new, s):
                 str_end = s[end:]
                 s = str_start + replacement + str_end
 
-    assert isinstance(s, unicode), "Result `s` is not Unicode"
+    assert isinstance(s, str), "Result `s` is not Unicode"
 
     return s
 
@@ -312,20 +311,20 @@ def convert_clean_md_to_html(md, put_breaks=False):
     Anki expects.
     """
 
-    assert isinstance(md, unicode), "Input `md` is not Unicode"
+    assert isinstance(md, str), "Input `md` is not Unicode"
 
-    result = u"<div>"
+    result = "<div>"
     location_last_nbsp = -999999999  # take an unlike large previous occurence
-    last_char = u""
+    last_char = ""
     for index, char in enumerate(md):
-        if char == u"\n":
-            result += u"</div><div>"
+        if char == "\n":
+            result += "</div><div>"
         elif char == " ":
             if (index - location_last_nbsp) == 1:
                 result += char
             else:
-                if last_char == u"\n" or last_char in u" ":
-                    result += u"&nbsp;"
+                if last_char == "\n" or last_char in " ":
+                    result += "&nbsp;"
                     location_last_nbsp = index
                 else:
                     result += char
@@ -333,19 +332,19 @@ def convert_clean_md_to_html(md, put_breaks=False):
             result += char
         last_char = char
     # remove last opening <div> tag
-    if result.endswith(u"<div>"):
-        result = result[:(len(result) - len(u"<div>"))]
+    if result.endswith("<div>"):
+        result = result[:(len(result) - len("<div>"))]
     # or add a closing <div> tag
     else:
-        result += u"</div>"
+        result += "</div>"
 
     # <div></div> needs to be a visible empty line
     if put_breaks:
         soup = BeautifulSoup.BeautifulSoup(result)
-        for elem in soup.findAll(u"div"):
+        for elem in soup.findAll("div"):
             if not elem.contents:
-                elem.append(BeautifulSoup.Tag(soup, u"br"))
-        result = unicode(soup)
+                elem.append(BeautifulSoup.Tag(soup, "br"))
+        result = str(soup)
         soup = None
 
     # remove "empty" lines that consist solely of (non-breakable) spaces
@@ -354,9 +353,9 @@ def convert_clean_md_to_html(md, put_breaks=False):
         if elem.string is not None:
             if all(x in ("&nbsp;", " ") for x in elem.string.split()):
                 elem.setString(BeautifulSoup.Tag(soup, "br"))
-    result = unicode(soup)
+    result = str(soup)
 
-    assert isinstance(result, unicode), "Result `result` is not Unicode"
+    assert isinstance(result, str), "Result `result` is not Unicode"
     return result
 
 
@@ -364,8 +363,8 @@ def is_same_html(html_one, html_two):
     """
     Return `True` when `html_one` is the same as `html_two`, `False` otherwise.
     """
-    assert isinstance(html_one, unicode), "Input `html_one` is not Unicode"
-    assert isinstance(html_two, unicode), "Input `html_two` is not Unicode"
+    assert isinstance(html_one, str), "Input `html_one` is not Unicode"
+    assert isinstance(html_two, str), "Input `html_two` is not Unicode"
     return html_one == html_two
 
 
@@ -378,8 +377,8 @@ def is_same_markdown(md_one, md_two):
     >>> is_same_markdown(md_one, md_two)
     True
     """
-    assert isinstance(md_one, unicode), "Input `md_one` is not Unicode"
-    assert isinstance(md_two, unicode), "Input `md_two` is not Unicode"
+    assert isinstance(md_one, str), "Input `md_one` is not Unicode"
+    assert isinstance(md_two, str), "Input `md_two` is not Unicode"
     compare_one = remove_white_space(md_one)
     compare_two = remove_white_space(md_two)
     return compare_one == compare_two
@@ -390,8 +389,8 @@ def is_same_text(text_one, text_two):
     Return `True` when `text_one` is the same as `text_two`, `False` otherwise.
     """
 
-    assert isinstance(text_one, unicode), "Input `text_one` is not Unicode"
-    assert isinstance(text_two, unicode), "Input `text_two` is not Unicode"
+    assert isinstance(text_one, str), "Input `text_one` is not Unicode"
+    assert isinstance(text_two, str), "Input `text_two` is not Unicode"
     return text_one == text_two
 
 
@@ -404,9 +403,9 @@ def remove_white_space(s):
     u'thiswasatriumph'
     """
 
-    assert isinstance(s, unicode), "Input `s` is not Unicode"
+    assert isinstance(s, str), "Input `s` is not Unicode"
 
-    return u"".join(char for char in s if not char.isspace())
+    return "".join(char for char in s if not char.isspace())
 
 
 def markdown_data_to_json(unique_id, isconverted, md):
@@ -414,7 +413,7 @@ def markdown_data_to_json(unique_id, isconverted, md):
     Return a dictionary with information that is needed for the database.
     """
 
-    assert isinstance(md, unicode), "Input `md` is not Unicode"
+    assert isinstance(md, str), "Input `md` is not Unicode"
 
     return  {
                 "id": unique_id,
@@ -438,7 +437,7 @@ def merge_dicts(existing, new):
     True
     """
 
-    return dict(existing.items() + new.items())
+    return dict(list(existing.items()) + list(new.items()))
 
 
 def json_dump_and_compress(data):
@@ -447,8 +446,8 @@ def json_dump_and_compress(data):
     in base64.
     """
 
-    encoded = unicode(base64.b64encode(json.dumps(data)))
-    assert isinstance(encoded, unicode), "Output `encoded` is not Unicode"
+    encoded = str(base64.b64encode(json.dumps(data)))
+    assert isinstance(encoded, str), "Output `encoded` is not Unicode"
     return encoded
 
 
@@ -458,22 +457,22 @@ def decompress_and_json_load(data):
     """
 
     if not data:
-        return u""
+        return ""
 
-    assert isinstance(data, unicode), "Input `data` is not Unicode"
+    assert isinstance(data, str), "Input `data` is not Unicode"
 
     try:
         decoded = base64.b64decode(data)
     except (TypeError, UnicodeEncodeError) as e:
         # `data` is not a valid base64-encoded string
-        print e  # TODO: should be logged
+        print(e)  # TODO: should be logged
         return "corrupted"
 
     try:
         ret = json.loads(decoded)
         return ret
     except ValueError as e:
-        print e  # TODO: should be logged
+        print(e)  # TODO: should be logged
         return "corrupted"
 
 
@@ -517,14 +516,14 @@ def get_md_data_from_string(html):
     return the empty string.
     """
     if not html:
-        return u""
-    assert isinstance(html, unicode), "Input `html` is not Unicode"
+        return ""
+    assert isinstance(html, str), "Input `html` is not Unicode"
     if const.START_HTML_MARKER not in html:
-        return u""
+        return ""
     start = html.find(const.START_HTML_MARKER) + len(const.START_HTML_MARKER)
     end = html.find(const.END_HTML_MARKER, start)
     if start == -1 or end == -1:
-        return u""
+        return ""
     compr_str = html[start:end]
     return compr_str
 
@@ -557,9 +556,9 @@ def escape_html_chars(s):
     u'#lorem'
     """
     if not s:
-        return u""
+        return ""
 
-    assert isinstance(s, unicode), "Input `s` is not Unicode"
+    assert isinstance(s, str), "Input `s` is not Unicode"
 
     html_escape_table = {
         "&": "&amp;",
@@ -569,8 +568,8 @@ def escape_html_chars(s):
         "<": "&lt;",
     }
 
-    result = u"".join(html_escape_table.get(c, c) for c in s)
-    assert isinstance(result, unicode)
+    result = "".join(html_escape_table.get(c, c) for c in s)
+    assert isinstance(result, str)
     return result
 
 
@@ -587,9 +586,9 @@ def get_alignment(s):
     >>> get_alignment(u"random text")
     u'left'
     """
-    assert isinstance(s, unicode), "Input is not Unicode"
-    alignments = {u":-": u"left", u":-:": u"center", u"-:": u"right"}
-    default = u"left"
+    assert isinstance(s, str), "Input is not Unicode"
+    alignments = {":-": "left", ":-:": "center", "-:": "right"}
+    default = "left"
     if s not in alignments:
         return default
     return alignments[s]
@@ -612,11 +611,11 @@ def check_size_heading(s):
     >>> check_size_heading(u"# # # #lorem")
     1
     """
-    assert isinstance(s, unicode), "Input is not Unicode"
+    assert isinstance(s, str), "Input is not Unicode"
     # HTML headers go from <h1> to <h6>
-    regex = re.compile(ur"^(#{1,6})")
+    regex = re.compile(r"^(#{1,6})")
     s = s.strip()
-    if s.startswith(u"#"):
+    if s.startswith("#"):
         size_heading = len(regex.match(s).group(1))
         return size_heading
     else:
@@ -642,14 +641,14 @@ def strip_leading_whitespace(s):
     >>> strip_leading_whitespace(u"\\n\\t\\r      &nbsp;     And")
     u'And'
     """
-    assert isinstance(s, unicode), "Input is not Unicode"
+    assert isinstance(s, str), "Input is not Unicode"
     if not s:
         return s
     while True:
         if any(s.startswith(c) for c in string.whitespace):
             s = s.lstrip()
-        elif s.startswith(u"&nbsp;"):
-            s = s.lstrip(u"&nbsp;")
+        elif s.startswith("&nbsp;"):
+            s = s.lstrip("&nbsp;")
         else:
             break
     return s
@@ -678,19 +677,19 @@ def start_safe_block(hashmap):
     """
     Mark the start of a safe block for the onFocus event.
     """
-    if not all(key in hashmap for key in (u"start_time", u"safe_block")):
+    if not all(key in hashmap for key in ("start_time", "safe_block")):
         return None
-    hashmap[u"safe_block"] = True
-    hashmap[u"start_time"] = time.time()
+    hashmap["safe_block"] = True
+    hashmap["start_time"] = time.time()
 
 
 def end_safe_block(hashmap):
     """
     Mark the end of a safe block for the onFocus event.
     """
-    if not all(key in hashmap for key in (u"start_time", u"safe_block")):
+    if not all(key in hashmap for key in ("start_time", "safe_block")):
         return None
-    hashmap[u"safe_block"] = False
+    hashmap["safe_block"] = False
 
 
 def remove_whitespace_before_abbreviation_definition(md):
@@ -700,7 +699,7 @@ def remove_whitespace_before_abbreviation_definition(md):
     """
     if not md:
         return md
-    assert isinstance(md, unicode), "Input `md` is not Unicode"
+    assert isinstance(md, str), "Input `md` is not Unicode"
     regex = re.compile(r"( |\&nbsp;)+(\*\[[^]]*\]:)")
     return re.sub(regex, r"\2", md)
 
@@ -711,7 +710,7 @@ def remove_leading_whitespace_from_dd_element(md, add_newline=False):
     """
     if not md:
         return md
-    assert isinstance(md, unicode), "Input `md` is not Unicode"
+    assert isinstance(md, str), "Input `md` is not Unicode"
     markdown = md
     regex = re.compile(r"(\n) {4}(: .*?\n)")
     result = re.findall(regex, markdown)
@@ -725,7 +724,7 @@ def put_colons_in_html_def_list(html):
     """
     Insert colons as the first child of a `<dd>` tag.
     """
-    assert isinstance(html, unicode), "Input `html` is not Unicode"
+    assert isinstance(html, str), "Input `html` is not Unicode"
     if not html:
         return html
     soup = BeautifulSoup.BeautifulSoup(html)
@@ -733,12 +732,12 @@ def put_colons_in_html_def_list(html):
     for dd in dds:
         # catch rare cases when `<dd>` is defined, but `<dt>` not
         prevSib = dd.previousSibling
-        while unicode(prevSib) == u"\n":
+        while str(prevSib) == "\n":
             prevSib = prevSib.previousSibling
-        if (prevSib is None or prevSib.name != u"dt"):
+        if (prevSib is None or prevSib.name != "dt"):
             continue
-        dd.insert(0, u": ")
-    return unicode(soup)
+        dd.insert(0, ": ")
+    return str(soup)
 
 
 def filter_duplicates(sequence):
@@ -763,8 +762,8 @@ def split_string(text, splitlist):
     [u'one', u'two', u'three']
     """
 
-    assert isinstance(text, unicode), "Input `text` is not Unicode"
-    assert isinstance(splitlist, unicode), "Input `splitlist` is not Unicode"
+    assert isinstance(text, str), "Input `text` is not Unicode"
+    assert isinstance(splitlist, str), "Input `splitlist` is not Unicode"
 
     if not splitlist:
         return [text]
@@ -775,9 +774,9 @@ def split_string(text, splitlist):
 
 def downArrow():
     if isWin:
-        return u"▼"
+        return "▼"
     # windows 10 is lacking the smaller arrow on English installs
-    return u"▾"
+    return "▾"
 
 
 def set_tool_tip(elem, tip):
@@ -796,7 +795,7 @@ def prettify_option_name(s):
     >>> prettify_option_name(u"this_is_text")
     u'This is text'
     """
-    return s.replace(u"_", u" ").capitalize()
+    return s.replace("_", " ").capitalize()
 
 
 def deprettify_option_name(s):
@@ -807,7 +806,7 @@ def deprettify_option_name(s):
     >>> deprettify_option_name(u"This is text")
     u'this_is_text'
     """
-    return s.replace(u" ", u"_").lower()
+    return s.replace(" ", "_").lower()
 
 
 def key_to_text(key_sequence):

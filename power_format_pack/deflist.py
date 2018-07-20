@@ -20,7 +20,7 @@
 import json
 
 from PyQt4 import QtGui
-import utility
+from . import utility
 
 
 class DefList(QtGui.QDialog):

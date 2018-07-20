@@ -21,8 +21,8 @@ import json
 
 from PyQt4 import QtGui, QtCore
 
-import const
-import utility
+from . import const
+from . import utility
 
 
 class Table(object):
@@ -39,15 +39,15 @@ class Table(object):
 
         if self.p.get(const.STYLE_TABLE):
             self.TABLE_STYLING = \
-                u"style='font-size: 1em; width: 100%; border-collapse: collapse;'"
+                "style='font-size: 1em; width: 100%; border-collapse: collapse;'"
             self.HEAD_STYLING = \
-                u"align=\"{0}\" style=\"width: {1}%; padding: 5px;" \
-                + u"border-bottom: 2px solid #00B3FF\""
+                "align=\"{0}\" style=\"width: {1}%; padding: 5px;" \
+                + "border-bottom: 2px solid #00B3FF\""
             self.BODY_STYLING = \
-                u"style='text-align: {0}; padding: 5px;" \
-                + u"border-bottom: 1px solid #B0B0B0'"
+                "style='text-align: {0}; padding: 5px;" \
+                + "border-bottom: 1px solid #B0B0B0'"
         else:
-            self.TABLE_STYLING = self.HEAD_STYLING = self.BODY_STYLING = u""
+            self.TABLE_STYLING = self.HEAD_STYLING = self.BODY_STYLING = ""
 
         self.setup()
 
@@ -113,17 +113,17 @@ class Table(object):
             # set width of each column equal
             width = 100 / num_columns
 
-            header_html = u"<th {0}>header{1}</th>"
+            header_html = "<th {0}>header{1}</th>"
             header_column = "".join(header_html.format(
                 self.HEAD_STYLING.format("left", width), next(num_header))
-                for _ in xrange(num_columns))
-            body_html = u"<td {0}>data{1}</td>"
+                for _ in range(num_columns))
+            body_html = "<td {0}>data{1}</td>"
             body_column = "".join(body_html.format(
                 self.BODY_STYLING.format(width), next(num_data))
-                for _ in xrange(num_columns))
+                for _ in range(num_columns))
             body_row = "<tr>{}</tr>".format(body_column) * num_rows
 
-            html = u"""
+            html = """
             <table {0}>
                 <thead><tr>{1}</tr></thead>
                 <tbody>{2}</tbody>
@@ -143,20 +143,20 @@ class Table(object):
             return False
 
         # there is a single line of text
-        if not self.selected_text.count(u"\n"):
+        if not self.selected_text.count("\n"):
             return False
 
         # there is no content in table
-        if all(c in (u"|", u"\n") for c in self.selected_text):
+        if all(c in ("|", "\n") for c in self.selected_text):
             return False
 
         # split on newlines
-        first = [x for x in self.selected_text.split(u"\n") if x]
+        first = [x for x in self.selected_text.split("\n") if x]
 
         # split on pipes
         second = list()
         for elem in first[:]:
-            new_elem = [x.strip() for x in elem.split(u"|")]
+            new_elem = [x.strip() for x in elem.split("|")]
             new_elem = [utility.escape_html_chars(word) for word in new_elem]
             second.append(new_elem)
 
@@ -168,39 +168,39 @@ class Table(object):
         width = 100 / max_num_cols
 
         # check for "-|-|-" alignment row
-        if all(x.strip(u":") in (u"-", u"") for x in second[1]):
+        if all(x.strip(":") in ("-", "") for x in second[1]):
             start = 2
             align_line = second[1]
             len_align_line = len(align_line)
             if len_align_line < max_num_cols:
-                align_line += [u"-"] * (max_num_cols - len_align_line)
+                align_line += ["-"] * (max_num_cols - len_align_line)
             alignments = list()
             for elem in second[1]:
                 alignments.append(utility.get_alignment(elem))
         else:
-            alignments = [u"left"] * max_num_cols
+            alignments = ["left"] * max_num_cols
             start = 1
 
         # create a table
-        head_row = u""
-        head_html = u"<th {0}>{1}</th>"
+        head_row = ""
+        head_html = "<th {0}>{1}</th>"
         for elem, alignment in zip(second[0], alignments):
             head_row += head_html.format(
                     self.HEAD_STYLING.format(alignment, width), elem)
-        extra_cols = u""
+        extra_cols = ""
         if len(second[0]) < max_num_cols:
             diff = len(second[0]) - max_num_cols
             assert diff < 0, \
                 "Difference between len(second[0]) and max_num_cols is positive"
             for alignment in alignments[diff:]:
                 extra_cols += head_html.format(
-                        self.HEAD_STYLING.format(alignment, width), u"")
+                        self.HEAD_STYLING.format(alignment, width), "")
         head_row += extra_cols
 
-        body_rows = u""
+        body_rows = ""
         for row in second[start:]:
-            body_rows += u"<tr>"
-            body_html = u"<td {0}>{1}</td>"
+            body_rows += "<tr>"
+            body_html = "<td {0}>{1}</td>"
             for elem, alignment in zip(row, alignments):
                 body_rows += body_html.format(
                         self.BODY_STYLING.format(alignment), elem)
@@ -213,10 +213,10 @@ class Table(object):
                 # use the correct alignment for the last few rows
                 for alignment in alignments[diff:]:
                     extra_cols += body_html.format(
-                            self.BODY_STYLING.format(alignment), u"")
-            body_rows += extra_cols + u"</tr>"
+                            self.BODY_STYLING.format(alignment), "")
+            body_rows += extra_cols + "</tr>"
 
-        html = u"""
+        html = """
         <table {0}>
             <thead>
                 <tr>

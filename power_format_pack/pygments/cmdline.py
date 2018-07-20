@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+
 
 import sys
 import getopt
@@ -469,7 +469,7 @@ def main_inner(popts, args, usage):
     else:
         # line by line processing of stdin (eg: for 'tail -f')...
         try:
-            while 1:
+            while True:
                 if sys.version_info > (3,):
                     # Python 3: we have to use .buffer to get a binary stream
                     line = sys.stdin.buffer.readline()

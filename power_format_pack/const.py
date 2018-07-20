@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License along
 # with Power Format Pack. If not, see http://www.gnu.org/licenses/.
 
-import HTMLParser
+import html.parser
 import re
 import string
 import sys
@@ -110,7 +110,7 @@ MAX_BYTES_PREFS               = 32768
 # check if image present in Markdown
 IS_LINK_OR_IMG_REGEX = re.compile(r"!\[[^\]]*\](\(.*?(?<!\\)\))")
 # to unescape image data
-HTML_PARSER                   = HTMLParser.HTMLParser()
+HTML_PARSER                   = html.parser.HTMLParser()
 
 # config file
 CONFIG_DEFAULT                = "DEFAULT"

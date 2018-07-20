@@ -20,7 +20,7 @@
 from PyQt4 import QtGui, QtCore
 
 from anki.utils import isMac, isWin
-from prefhelper import PrefHelper
+from .prefhelper import PrefHelper
 
 
 class HiliteColor(object):

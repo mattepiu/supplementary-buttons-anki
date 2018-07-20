@@ -49,9 +49,9 @@ class FormKeyBindings(QtGui.QDialog):
         num_iterator = utility.create_counter()
         self.table.setRowCount(len(keybindings))
         # create all cells
-        for action, keybinding in sorted(keybindings.iteritems()):
+        for action, keybinding in sorted(keybindings.items()):
             pretty_action = utility.prettify_option_name(action)
-            current_row = num_iterator.next()
+            current_row = next(num_iterator)
             action_cell = QtGui.QTableWidgetItem(pretty_action)
             # action cells should be non-modifiable
             action_cell.setFlags(action_cell.flags() & ~QtCore.Qt.ItemIsEditable)
@@ -64,8 +64,8 @@ class FormKeyBindings(QtGui.QDialog):
 
     def refill_table(self, keybindings):
         num_iterator = utility.create_counter()
-        for _ in xrange(self.table.rowCount()):
-            current_row = num_iterator.next()
+        for _ in range(self.table.rowCount()):
+            current_row = next(num_iterator)
             action_cell = self.table.item(current_row, 0)
             keybinding_cell = self.table.item(current_row, 1)
             ugly_action = utility.deprettify_option_name(action_cell.text())

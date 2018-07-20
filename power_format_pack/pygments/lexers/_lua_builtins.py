@@ -13,7 +13,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+
 
 
 MODULES = {'basic': ('_G',
@@ -147,7 +147,7 @@ MODULES = {'basic': ('_G',
 if __name__ == '__main__':  # pragma: no cover
     import re
     try:
-        from urllib import urlopen
+        from urllib.request import urlopen
     except ImportError:
         from urllib.request import urlopen
     import pprint
@@ -213,7 +213,7 @@ if __name__ == '__main__':  # pragma: no cover
         return functions
 
     def get_function_module(name):
-        for mod, cb in module_callbacks().items():
+        for mod, cb in list(module_callbacks().items()):
             if cb(name):
                 return mod
         if '.' in name:
@@ -236,13 +236,13 @@ if __name__ == '__main__':  # pragma: no cover
 
     def run():
         version = get_newest_version()
-        print('> Downloading function index for Lua %s' % version)
+        print(('> Downloading function index for Lua %s' % version))
         functions = get_lua_functions(version)
-        print('> %d functions found:' % len(functions))
+        print(('> %d functions found:' % len(functions)))
 
         modules = {}
         for full_function_name in functions:
-            print('>> %s' % full_function_name)
+            print(('>> %s' % full_function_name))
             m = get_function_module(full_function_name)
             modules.setdefault(m, []).append(full_function_name)
 

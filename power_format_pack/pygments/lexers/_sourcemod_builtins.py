@@ -12,7 +12,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+
 
 FUNCTIONS = (
     'OnEntityCreated',
@@ -1097,7 +1097,7 @@ if __name__ == '__main__':  # pragma: no cover
     import re
     import sys
     try:
-        from urllib import FancyURLopener
+        from urllib.request import FancyURLopener
     except ImportError:
         from urllib.request import FancyURLopener
 
@@ -1148,13 +1148,13 @@ if __name__ == '__main__':  # pragma: no cover
 
     def run():
         version = get_version()
-        print('> Downloading function index for SourceMod %s' % version)
+        print(('> Downloading function index for SourceMod %s' % version))
         functions = get_sm_functions()
-        print('> %d functions found:' % len(functions))
+        print(('> %d functions found:' % len(functions)))
 
         functionlist = []
         for full_function_name in functions:
-            print('>> %s' % full_function_name)
+            print(('>> %s' % full_function_name))
             functionlist.append(full_function_name)
 
         regenerate(__file__, functionlist)

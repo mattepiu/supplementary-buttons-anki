@@ -19,7 +19,7 @@
 
 from PyQt4 import QtGui, QtCore
 
-import const
+from . import const
 from power_format_pack.list import List
 
 

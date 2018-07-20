@@ -32,7 +32,7 @@ def onHtmlEdit(self):
         html += md_data
     # filter html through beautifulsoup so we can strip out things like a
     # leading </div>
-    html = unicode(BeautifulSoup(html))
+    html = str(BeautifulSoup(html))
     self.note.fields[self.currentField] = html
     self.loadNote()
     # focus field so it's saved

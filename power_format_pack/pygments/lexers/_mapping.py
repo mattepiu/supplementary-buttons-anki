@@ -13,7 +13,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+
 
 LEXERS = {
     'ABAPLexer': ('pygments.lexers.business', 'ABAP', ('abap',), ('*.abap',), ('text/x-abap',)),
@@ -416,4 +416,4 @@ if __name__ == '__main__':  # pragma: no cover
         fp.write('LEXERS = {\n    %s,\n}\n\n' % ',\n    '.join(found_lexers))
         fp.write(footer)
 
-    print ('=== %d lexers processed.' % len(found_lexers))
+    print(('=== %d lexers processed.' % len(found_lexers)))

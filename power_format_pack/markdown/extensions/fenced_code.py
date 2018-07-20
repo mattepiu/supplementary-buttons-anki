@@ -15,8 +15,8 @@ All changes Copyright 2008-2014 The Python Markdown Project
 License: [BSD](http://www.opensource.org/licenses/bsd-license.php)
 """
 
-from __future__ import absolute_import
-from __future__ import unicode_literals
+
+
 from . import Extension
 from ..preprocessors import Preprocessor
 from .codehilite import CodeHilite, CodeHiliteExtension, parse_hl_lines
@@ -65,7 +65,7 @@ class FencedBlockPreprocessor(Preprocessor):
             self.checked_for_codehilite = True
 
         text = "\n".join(lines)
-        while 1:
+        while True:
             m = self.FENCED_BLOCK_RE.search(text)
             if m:
                 lang = ''

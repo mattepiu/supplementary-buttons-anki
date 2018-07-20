@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+
 
 import os
 import sys
@@ -29,11 +29,11 @@ __all__ = ['HtmlFormatter']
 
 
 _escape_html_table = {
-    ord('&'): u'&amp;',
-    ord('<'): u'&lt;',
-    ord('>'): u'&gt;',
-    ord('"'): u'&quot;',
-    ord("'"): u'&#39;',
+    ord('&'): '&amp;',
+    ord('<'): '&lt;',
+    ord('>'): '&gt;',
+    ord('"'): '&quot;',
+    ord("'"): '&#39;',
 }
 
 
@@ -482,10 +482,9 @@ class HtmlFormatter(Formatter):
                 tmp.append((arg and arg + ' ' or '') + cls)
             return ', '.join(tmp)
 
-        styles = [(level, ttype, cls, style)
+        styles = sorted([(level, ttype, cls, style)
                   for cls, (style, ttype, level) in iteritems(self.class2style)
-                  if cls and style]
-        styles.sort()
+                  if cls and style])
         lines = ['%s { %s } /* %s */' % (prefix(cls), style, repr(ttype)[6:])
                  for (level, ttype, cls, style) in styles]
         if arg and not self.nobackground and \

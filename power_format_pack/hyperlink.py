@@ -20,8 +20,8 @@
 import json
 
 from PyQt4 import QtGui
-import utility
-import const
+from . import utility
+from . import const
 
 
 class Hyperlink(object):
@@ -96,12 +96,12 @@ class Hyperlink(object):
         Create a hyperlink string, where `url` is the hyperlink reference
         and `text` the content of the tag.
         """
-        assert isinstance(url, unicode), "Input `url` is not Unicode"
-        assert isinstance(text, unicode), "Input `text` is not Unicode"
+        assert isinstance(url, str), "Input `url` is not Unicode"
+        assert isinstance(text, str), "Input `text` is not Unicode"
 
         text = utility.escape_html_chars(text)
 
-        return u"<a href=\"{0}\">{1}</a>".format(url, text)
+        return "<a href=\"{0}\">{1}</a>".format(url, text)
 
     def insert_anchor(self, url, text):
         """

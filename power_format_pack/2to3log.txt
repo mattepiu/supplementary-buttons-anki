@@ -1,0 +1,462 @@
+$ python ../2to3.py ./
+RefactoringTool: Skipping optional fixer: buffer
+RefactoringTool: Skipping optional fixer: idioms
+RefactoringTool: Skipping optional fixer: set_literal
+RefactoringTool: Skipping optional fixer: ws_comma
+RefactoringTool: No changes to ./power_format_pack\abbreviation.py
+RefactoringTool: No changes to ./power_format_pack\blockquote.py
+RefactoringTool: No changes to ./power_format_pack\button.py
+RefactoringTool: No changes to ./power_format_pack\const.py
+RefactoringTool: No changes to ./power_format_pack\deflist.py
+RefactoringTool: No changes to ./power_format_pack\extra_buttons.py
+RefactoringTool: No changes to ./power_format_pack\heading.py
+RefactoringTool: No changes to ./power_format_pack\hilite_color.py
+RefactoringTool: No changes to ./power_format_pack\html2text_overrides.py
+RefactoringTool: No changes to ./power_format_pack\hyperlink.py
+RefactoringTool: No changes to ./power_format_pack\list.py
+RefactoringTool: No changes to ./power_format_pack\markdowner.py
+RefactoringTool: No changes to ./power_format_pack\menu.py
+RefactoringTool: No changes to ./power_format_pack\orderedlist.py
+RefactoringTool: No changes to ./power_format_pack\preferences.py
+RefactoringTool: No changes to ./power_format_pack\prefhelper.py
+RefactoringTool: No changes to ./power_format_pack\table.py
+RefactoringTool: No changes to ./power_format_pack\unorderedlist.py
+RefactoringTool: No changes to ./power_format_pack\utility.py
+RefactoringTool: No changes to ./power_format_pack\anki_modules\aqt\editor.py
+RefactoringTool: No changes to ./power_format_pack\docs\_version.py
+RefactoringTool: No changes to ./power_format_pack\docs\htmlforankiweb.py
+RefactoringTool: No changes to ./power_format_pack\html2text\html2text.py
+RefactoringTool: No changes to ./power_format_pack\markdown\__init__.py
+RefactoringTool: No changes to ./power_format_pack\markdown\__main__.py
+RefactoringTool: No changes to ./power_format_pack\markdown\__version__.py
+RefactoringTool: No changes to ./power_format_pack\markdown\blockparser.py
+RefactoringTool: No changes to ./power_format_pack\markdown\blockprocessors.py
+RefactoringTool: No changes to ./power_format_pack\markdown\inlinepatterns.py
+RefactoringTool: No changes to ./power_format_pack\markdown\odict.py
+RefactoringTool: No changes to ./power_format_pack\markdown\postprocessors.py
+RefactoringTool: No changes to ./power_format_pack\markdown\preprocessors.py
+RefactoringTool: No changes to ./power_format_pack\markdown\serializers.py
+RefactoringTool: No changes to ./power_format_pack\markdown\treeprocessors.py
+RefactoringTool: No changes to ./power_format_pack\markdown\util.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\__init__.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\abbr.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\admonition.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\attr_list.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\codehilite.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\def_list.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\extra.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\fenced_code.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\footnotes.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\headerid.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\meta.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\nl2br.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\sane_lists.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\smart_strong.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\smarty.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\tables.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\toc.py
+RefactoringTool: No changes to ./power_format_pack\markdown\extensions\wikilinks.py
+RefactoringTool: No changes to ./power_format_pack\pygments\__init__.py
+RefactoringTool: Can't parse ./power_format_pack\pygments\cmdline.py: ParseError: bad input: type=22, value='=', context=('', (151, 42))
+RefactoringTool: No changes to ./power_format_pack\pygments\console.py
+RefactoringTool: No changes to ./power_format_pack\pygments\filter.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatter.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexer.py
+RefactoringTool: No changes to ./power_format_pack\pygments\modeline.py
+RefactoringTool: No changes to ./power_format_pack\pygments\plugin.py
+RefactoringTool: No changes to ./power_format_pack\pygments\regexopt.py
+RefactoringTool: No changes to ./power_format_pack\pygments\scanner.py
+RefactoringTool: No changes to ./power_format_pack\pygments\sphinxext.py
+RefactoringTool: No changes to ./power_format_pack\pygments\style.py
+RefactoringTool: No changes to ./power_format_pack\pygments\token.py
+RefactoringTool: No changes to ./power_format_pack\pygments\unistring.py
+RefactoringTool: No changes to ./power_format_pack\pygments\util.py
+RefactoringTool: No changes to ./power_format_pack\pygments\filters\__init__.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\__init__.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\_mapping.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\bbcode.py
+RefactoringTool: Can't parse ./power_format_pack\pygments\formatters\html.py: ParseError: bad input: type=22, value='=', context=('', (525, 30))
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\img.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\latex.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\other.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\rtf.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\svg.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\terminal.py
+RefactoringTool: No changes to ./power_format_pack\pygments\formatters\terminal256.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\__init__.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_asy_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_cl_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_cocoa_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_lasso_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_lua_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_mapping.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_mql_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_openedge_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_php_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_postgres_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_scilab_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_sourcemod_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_stan_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\_vim_builtins.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\actionscript.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\agile.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\algebra.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\ambient.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\apl.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\archetype.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\asm.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\automation.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\basic.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\business.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\c_cpp.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\c_like.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\chapel.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\compiled.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\configs.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\console.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\css.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\d.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\dalvik.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\data.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\diff.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\dotnet.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\dsls.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\dylan.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\ecl.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\eiffel.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\erlang.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\esoteric.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\factor.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\fantom.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\felix.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\fortran.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\foxpro.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\functional.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\go.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\graph.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\graphics.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\haskell.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\haxe.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\hdl.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\html.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\idl.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\igor.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\inferno.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\installers.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\int_fiction.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\iolang.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\javascript.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\julia.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\jvm.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\lisp.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\make.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\markup.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\math.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\matlab.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\ml.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\modeling.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\modula2.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\nimrod.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\nit.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\nix.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\objective.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\ooc.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\other.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\parsers.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\pascal.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\pawn.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\perl.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\php.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\prolog.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\python.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\r.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\rdf.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\rebol.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\resource.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\robotframework.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\ruby.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\rust.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\scripting.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\shell.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\smalltalk.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\snobol.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\special.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\sql.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\tcl.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\templates.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\testing.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\text.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\textedit.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\textfmts.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\theorem.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\urbi.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\web.py
+RefactoringTool: No changes to ./power_format_pack\pygments\lexers\webmisc.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\__init__.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\algol.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\algol_nu.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\arduino.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\autumn.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\borland.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\bw.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\colorful.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\default.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\emacs.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\friendly.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\fruity.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\igor.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\lovelace.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\manni.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\monokai.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\murphy.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\native.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\paraiso_dark.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\paraiso_light.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\pastie.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\perldoc.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\rrt.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\tango.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\trac.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\vim.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\vs.py
+RefactoringTool: No changes to ./power_format_pack\pygments\styles\xcode.py
+RefactoringTool: No changes to ./power_format_pack\python_modules\ConfigParser.py
+RefactoringTool: No changes to ./power_format_pack\python_modules\urllib.py
+RefactoringTool: No changes to ./power_format_pack\python_modules\importlib\__init__.py
+RefactoringTool: No changes to ./power_format_pack\qt\controllers\keybindings.py
+RefactoringTool: No changes to ./power_format_pack\qt\views\keysequencedialog.py
+RefactoringTool: No changes to ./power_format_pack\qt\views\table_keybindings.py
+RefactoringTool: No changes to ./power_format_pack\qt\views\unordered_list_types.py
+RefactoringTool: No changes to ./power_format_pack\tests\test_hyperlink.py
+RefactoringTool: No changes to ./power_format_pack\tests\test_markdowner.py
+RefactoringTool: No changes to ./power_format_pack\tests\test_utility.py
+RefactoringTool: Files that need to be modified:
+RefactoringTool: ./power_format_pack\abbreviation.py
+RefactoringTool: ./power_format_pack\blockquote.py
+RefactoringTool: ./power_format_pack\button.py
+RefactoringTool: ./power_format_pack\const.py
+RefactoringTool: ./power_format_pack\deflist.py
+RefactoringTool: ./power_format_pack\extra_buttons.py
+RefactoringTool: ./power_format_pack\heading.py
+RefactoringTool: ./power_format_pack\hilite_color.py
+RefactoringTool: ./power_format_pack\html2text_overrides.py
+RefactoringTool: ./power_format_pack\hyperlink.py
+RefactoringTool: ./power_format_pack\list.py
+RefactoringTool: ./power_format_pack\markdowner.py
+RefactoringTool: ./power_format_pack\menu.py
+RefactoringTool: ./power_format_pack\orderedlist.py
+RefactoringTool: ./power_format_pack\preferences.py
+RefactoringTool: ./power_format_pack\prefhelper.py
+RefactoringTool: ./power_format_pack\table.py
+RefactoringTool: ./power_format_pack\unorderedlist.py
+RefactoringTool: ./power_format_pack\utility.py
+RefactoringTool: ./power_format_pack\anki_modules\aqt\editor.py
+RefactoringTool: ./power_format_pack\docs\_version.py
+RefactoringTool: ./power_format_pack\docs\htmlforankiweb.py
+RefactoringTool: ./power_format_pack\html2text\html2text.py
+RefactoringTool: ./power_format_pack\markdown\__init__.py
+RefactoringTool: ./power_format_pack\markdown\__main__.py
+RefactoringTool: ./power_format_pack\markdown\__version__.py
+RefactoringTool: ./power_format_pack\markdown\blockparser.py
+RefactoringTool: ./power_format_pack\markdown\blockprocessors.py
+RefactoringTool: ./power_format_pack\markdown\inlinepatterns.py
+RefactoringTool: ./power_format_pack\markdown\odict.py
+RefactoringTool: ./power_format_pack\markdown\postprocessors.py
+RefactoringTool: ./power_format_pack\markdown\preprocessors.py
+RefactoringTool: ./power_format_pack\markdown\serializers.py
+RefactoringTool: ./power_format_pack\markdown\treeprocessors.py
+RefactoringTool: ./power_format_pack\markdown\util.py
+RefactoringTool: ./power_format_pack\markdown\extensions\__init__.py
+RefactoringTool: ./power_format_pack\markdown\extensions\abbr.py
+RefactoringTool: ./power_format_pack\markdown\extensions\admonition.py
+RefactoringTool: ./power_format_pack\markdown\extensions\attr_list.py
+RefactoringTool: ./power_format_pack\markdown\extensions\codehilite.py
+RefactoringTool: ./power_format_pack\markdown\extensions\def_list.py
+RefactoringTool: ./power_format_pack\markdown\extensions\extra.py
+RefactoringTool: ./power_format_pack\markdown\extensions\fenced_code.py
+RefactoringTool: ./power_format_pack\markdown\extensions\footnotes.py
+RefactoringTool: ./power_format_pack\markdown\extensions\headerid.py
+RefactoringTool: ./power_format_pack\markdown\extensions\meta.py
+RefactoringTool: ./power_format_pack\markdown\extensions\nl2br.py
+RefactoringTool: ./power_format_pack\markdown\extensions\sane_lists.py
+RefactoringTool: ./power_format_pack\markdown\extensions\smart_strong.py
+RefactoringTool: ./power_format_pack\markdown\extensions\smarty.py
+RefactoringTool: ./power_format_pack\markdown\extensions\tables.py
+RefactoringTool: ./power_format_pack\markdown\extensions\toc.py
+RefactoringTool: ./power_format_pack\markdown\extensions\wikilinks.py
+RefactoringTool: ./power_format_pack\pygments\__init__.py
+RefactoringTool: ./power_format_pack\pygments\console.py
+RefactoringTool: ./power_format_pack\pygments\filter.py
+RefactoringTool: ./power_format_pack\pygments\formatter.py
+RefactoringTool: ./power_format_pack\pygments\lexer.py
+RefactoringTool: ./power_format_pack\pygments\modeline.py
+RefactoringTool: ./power_format_pack\pygments\plugin.py
+RefactoringTool: ./power_format_pack\pygments\regexopt.py
+RefactoringTool: ./power_format_pack\pygments\scanner.py
+RefactoringTool: ./power_format_pack\pygments\sphinxext.py
+RefactoringTool: ./power_format_pack\pygments\style.py
+RefactoringTool: ./power_format_pack\pygments\token.py
+RefactoringTool: ./power_format_pack\pygments\unistring.py
+RefactoringTool: ./power_format_pack\pygments\util.py
+RefactoringTool: ./power_format_pack\pygments\filters\__init__.py
+RefactoringTool: ./power_format_pack\pygments\formatters\__init__.py
+RefactoringTool: ./power_format_pack\pygments\formatters\_mapping.py
+RefactoringTool: ./power_format_pack\pygments\formatters\bbcode.py
+RefactoringTool: ./power_format_pack\pygments\formatters\img.py
+RefactoringTool: ./power_format_pack\pygments\formatters\latex.py
+RefactoringTool: ./power_format_pack\pygments\formatters\other.py
+RefactoringTool: ./power_format_pack\pygments\formatters\rtf.py
+RefactoringTool: ./power_format_pack\pygments\formatters\svg.py
+RefactoringTool: ./power_format_pack\pygments\formatters\terminal.py
+RefactoringTool: ./power_format_pack\pygments\formatters\terminal256.py
+RefactoringTool: ./power_format_pack\pygments\lexers\__init__.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_asy_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_cl_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_cocoa_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_lasso_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_lua_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_mapping.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_mql_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_openedge_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_php_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_postgres_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_scilab_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_sourcemod_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_stan_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\_vim_builtins.py
+RefactoringTool: ./power_format_pack\pygments\lexers\actionscript.py
+RefactoringTool: ./power_format_pack\pygments\lexers\agile.py
+RefactoringTool: ./power_format_pack\pygments\lexers\algebra.py
+RefactoringTool: ./power_format_pack\pygments\lexers\ambient.py
+RefactoringTool: ./power_format_pack\pygments\lexers\apl.py
+RefactoringTool: ./power_format_pack\pygments\lexers\archetype.py
+RefactoringTool: ./power_format_pack\pygments\lexers\asm.py
+RefactoringTool: ./power_format_pack\pygments\lexers\automation.py
+RefactoringTool: ./power_format_pack\pygments\lexers\basic.py
+RefactoringTool: ./power_format_pack\pygments\lexers\business.py
+RefactoringTool: ./power_format_pack\pygments\lexers\c_cpp.py
+RefactoringTool: ./power_format_pack\pygments\lexers\c_like.py
+RefactoringTool: ./power_format_pack\pygments\lexers\chapel.py
+RefactoringTool: ./power_format_pack\pygments\lexers\compiled.py
+RefactoringTool: ./power_format_pack\pygments\lexers\configs.py
+RefactoringTool: ./power_format_pack\pygments\lexers\console.py
+RefactoringTool: ./power_format_pack\pygments\lexers\css.py
+RefactoringTool: ./power_format_pack\pygments\lexers\d.py
+RefactoringTool: ./power_format_pack\pygments\lexers\dalvik.py
+RefactoringTool: ./power_format_pack\pygments\lexers\data.py
+RefactoringTool: ./power_format_pack\pygments\lexers\diff.py
+RefactoringTool: ./power_format_pack\pygments\lexers\dotnet.py
+RefactoringTool: ./power_format_pack\pygments\lexers\dsls.py
+RefactoringTool: ./power_format_pack\pygments\lexers\dylan.py
+RefactoringTool: ./power_format_pack\pygments\lexers\ecl.py
+RefactoringTool: ./power_format_pack\pygments\lexers\eiffel.py
+RefactoringTool: ./power_format_pack\pygments\lexers\erlang.py
+RefactoringTool: ./power_format_pack\pygments\lexers\esoteric.py
+RefactoringTool: ./power_format_pack\pygments\lexers\factor.py
+RefactoringTool: ./power_format_pack\pygments\lexers\fantom.py
+RefactoringTool: ./power_format_pack\pygments\lexers\felix.py
+RefactoringTool: ./power_format_pack\pygments\lexers\fortran.py
+RefactoringTool: ./power_format_pack\pygments\lexers\foxpro.py
+RefactoringTool: ./power_format_pack\pygments\lexers\functional.py
+RefactoringTool: ./power_format_pack\pygments\lexers\go.py
+RefactoringTool: ./power_format_pack\pygments\lexers\graph.py
+RefactoringTool: ./power_format_pack\pygments\lexers\graphics.py
+RefactoringTool: ./power_format_pack\pygments\lexers\haskell.py
+RefactoringTool: ./power_format_pack\pygments\lexers\haxe.py
+RefactoringTool: ./power_format_pack\pygments\lexers\hdl.py
+RefactoringTool: ./power_format_pack\pygments\lexers\html.py
+RefactoringTool: ./power_format_pack\pygments\lexers\idl.py
+RefactoringTool: ./power_format_pack\pygments\lexers\igor.py
+RefactoringTool: ./power_format_pack\pygments\lexers\inferno.py
+RefactoringTool: ./power_format_pack\pygments\lexers\installers.py
+RefactoringTool: ./power_format_pack\pygments\lexers\int_fiction.py
+RefactoringTool: ./power_format_pack\pygments\lexers\iolang.py
+RefactoringTool: ./power_format_pack\pygments\lexers\javascript.py
+RefactoringTool: ./power_format_pack\pygments\lexers\julia.py
+RefactoringTool: ./power_format_pack\pygments\lexers\jvm.py
+RefactoringTool: ./power_format_pack\pygments\lexers\lisp.py
+RefactoringTool: ./power_format_pack\pygments\lexers\make.py
+RefactoringTool: ./power_format_pack\pygments\lexers\markup.py
+RefactoringTool: ./power_format_pack\pygments\lexers\math.py
+RefactoringTool: ./power_format_pack\pygments\lexers\matlab.py
+RefactoringTool: ./power_format_pack\pygments\lexers\ml.py
+RefactoringTool: ./power_format_pack\pygments\lexers\modeling.py
+RefactoringTool: ./power_format_pack\pygments\lexers\modula2.py
+RefactoringTool: ./power_format_pack\pygments\lexers\nimrod.py
+RefactoringTool: ./power_format_pack\pygments\lexers\nit.py
+RefactoringTool: ./power_format_pack\pygments\lexers\nix.py
+RefactoringTool: ./power_format_pack\pygments\lexers\objective.py
+RefactoringTool: ./power_format_pack\pygments\lexers\ooc.py
+RefactoringTool: ./power_format_pack\pygments\lexers\other.py
+RefactoringTool: ./power_format_pack\pygments\lexers\parsers.py
+RefactoringTool: ./power_format_pack\pygments\lexers\pascal.py
+RefactoringTool: ./power_format_pack\pygments\lexers\pawn.py
+RefactoringTool: ./power_format_pack\pygments\lexers\perl.py
+RefactoringTool: ./power_format_pack\pygments\lexers\php.py
+RefactoringTool: ./power_format_pack\pygments\lexers\prolog.py
+RefactoringTool: ./power_format_pack\pygments\lexers\python.py
+RefactoringTool: ./power_format_pack\pygments\lexers\r.py
+RefactoringTool: ./power_format_pack\pygments\lexers\rdf.py
+RefactoringTool: ./power_format_pack\pygments\lexers\rebol.py
+RefactoringTool: ./power_format_pack\pygments\lexers\resource.py
+RefactoringTool: ./power_format_pack\pygments\lexers\robotframework.py
+RefactoringTool: ./power_format_pack\pygments\lexers\ruby.py
+RefactoringTool: ./power_format_pack\pygments\lexers\rust.py
+RefactoringTool: ./power_format_pack\pygments\lexers\scripting.py
+RefactoringTool: ./power_format_pack\pygments\lexers\shell.py
+RefactoringTool: ./power_format_pack\pygments\lexers\smalltalk.py
+RefactoringTool: ./power_format_pack\pygments\lexers\snobol.py
+RefactoringTool: ./power_format_pack\pygments\lexers\special.py
+RefactoringTool: ./power_format_pack\pygments\lexers\sql.py
+RefactoringTool: ./power_format_pack\pygments\lexers\tcl.py
+RefactoringTool: ./power_format_pack\pygments\lexers\templates.py
+RefactoringTool: ./power_format_pack\pygments\lexers\testing.py
+RefactoringTool: ./power_format_pack\pygments\lexers\text.py
+RefactoringTool: ./power_format_pack\pygments\lexers\textedit.py
+RefactoringTool: ./power_format_pack\pygments\lexers\textfmts.py
+RefactoringTool: ./power_format_pack\pygments\lexers\theorem.py
+RefactoringTool: ./power_format_pack\pygments\lexers\urbi.py
+RefactoringTool: ./power_format_pack\pygments\lexers\web.py
+RefactoringTool: ./power_format_pack\pygments\lexers\webmisc.py
+RefactoringTool: ./power_format_pack\pygments\styles\__init__.py
+RefactoringTool: ./power_format_pack\pygments\styles\algol.py
+RefactoringTool: ./power_format_pack\pygments\styles\algol_nu.py
+RefactoringTool: ./power_format_pack\pygments\styles\arduino.py
+RefactoringTool: ./power_format_pack\pygments\styles\autumn.py
+RefactoringTool: ./power_format_pack\pygments\styles\borland.py
+RefactoringTool: ./power_format_pack\pygments\styles\bw.py
+RefactoringTool: ./power_format_pack\pygments\styles\colorful.py
+RefactoringTool: ./power_format_pack\pygments\styles\default.py
+RefactoringTool: ./power_format_pack\pygments\styles\emacs.py
+RefactoringTool: ./power_format_pack\pygments\styles\friendly.py
+RefactoringTool: ./power_format_pack\pygments\styles\fruity.py
+RefactoringTool: ./power_format_pack\pygments\styles\igor.py
+RefactoringTool: ./power_format_pack\pygments\styles\lovelace.py
+RefactoringTool: ./power_format_pack\pygments\styles\manni.py
+RefactoringTool: ./power_format_pack\pygments\styles\monokai.py
+RefactoringTool: ./power_format_pack\pygments\styles\murphy.py
+RefactoringTool: ./power_format_pack\pygments\styles\native.py
+RefactoringTool: ./power_format_pack\pygments\styles\paraiso_dark.py
+RefactoringTool: ./power_format_pack\pygments\styles\paraiso_light.py
+RefactoringTool: ./power_format_pack\pygments\styles\pastie.py
+RefactoringTool: ./power_format_pack\pygments\styles\perldoc.py
+RefactoringTool: ./power_format_pack\pygments\styles\rrt.py
+RefactoringTool: ./power_format_pack\pygments\styles\tango.py
+RefactoringTool: ./power_format_pack\pygments\styles\trac.py
+RefactoringTool: ./power_format_pack\pygments\styles\vim.py
+RefactoringTool: ./power_format_pack\pygments\styles\vs.py
+RefactoringTool: ./power_format_pack\pygments\styles\xcode.py
+RefactoringTool: ./power_format_pack\python_modules\ConfigParser.py
+RefactoringTool: ./power_format_pack\python_modules\urllib.py
+RefactoringTool: ./power_format_pack\python_modules\importlib\__init__.py
+RefactoringTool: ./power_format_pack\qt\controllers\keybindings.py
+RefactoringTool: ./power_format_pack\qt\views\keysequencedialog.py
+RefactoringTool: ./power_format_pack\qt\views\table_keybindings.py
+RefactoringTool: ./power_format_pack\qt\views\unordered_list_types.py
+RefactoringTool: ./power_format_pack\tests\test_hyperlink.py
+RefactoringTool: ./power_format_pack\tests\test_markdowner.py
+RefactoringTool: ./power_format_pack\tests\test_utility.py
+RefactoringTool: There were 2 errors:
+RefactoringTool: Can't parse ./power_format_pack\pygments\cmdline.py: ParseError: bad input: type=22, value='=', context=('', (151, 42))
+RefactoringTool: Can't parse ./power_format_pack\pygments\formatters\html.py: ParseError: bad input: type=22, value='=', context=('', (525, 30))
+

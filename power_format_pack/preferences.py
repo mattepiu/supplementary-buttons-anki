@@ -17,7 +17,7 @@
 # You should have received a copy of the GNU General Public License along
 # with Power Format Pack. If not, see http://www.gnu.org/licenses/.
 
-from prefhelper import PrefHelper
+from .prefhelper import PrefHelper
 
 
 class Preferences(object):

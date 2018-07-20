@@ -13,7 +13,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+
 
 FORMATTERS = {
     'BBCodeFormatter': ('pygments.formatters.bbcode', 'BBCode', ('bbcode', 'bb'), (), 'Format tokens with BBcodes. These formatting codes are used by many bulletin boards, so you can highlight your sourcecode with pygments before posting it there.'),
@@ -73,4 +73,4 @@ if __name__ == '__main__':  # pragma: no cover
         fp.write('FORMATTERS = {\n    %s\n}\n\n' % ',\n    '.join(found_formatters))
         fp.write(footer)
 
-    print ('=== %d formatters processed.' % len(found_formatters))
+    print(('=== %d formatters processed.' % len(found_formatters)))

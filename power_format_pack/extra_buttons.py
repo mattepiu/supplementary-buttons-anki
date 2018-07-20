@@ -23,26 +23,26 @@
 
 from PyQt4 import QtGui
 
-import const
-import preferences
-import utility
-from abbreviation import Abbreviation
+from . import const
+from . import preferences
+from . import utility
+from .abbreviation import Abbreviation
 from anki.hooks import wrap, addHook
 from anki.utils import isMac
-from anki_modules.aqt import editor as myeditor
+from .anki_modules.aqt import editor as myeditor
 from aqt import editor as anki_editor, mw
-from blockquote import Blockquote
-from deflist import DefList
-from heading import Heading
-from hilite_color import HiliteColor
-from hyperlink import Hyperlink
-from markdowner import Markdowner
-from menu import Options
-from orderedlist import OrderedList
+from .blockquote import Blockquote
+from .deflist import DefList
+from .heading import Heading
+from .hilite_color import HiliteColor
+from .hyperlink import Hyperlink
+from .markdowner import Markdowner
+from .menu import Options
+from .orderedlist import OrderedList
 from power_format_pack.button import Button
 from power_format_pack.unorderedlist import UnorderedList
-from preferences import Preferences
-from table import Table
+from .preferences import Preferences
+from .table import Table
 
 # Preferences
 ##################################################
@@ -79,98 +79,98 @@ def setup_buttons(editor):
 
     if p.get(const.CODE):
         shortcut = preferences.KEYS.get(const.CODE)
-        tooltip = u"Code format text ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Code format text ({})".format(utility.key_to_text(shortcut))
         callback = lambda: utility.wrap_in_tags(editor, "code", p.get(const.CODE_CLASS))
         button = Button(const.CODE, shortcut, tooltip, callback)
         place_button(editor, button)
 
     if p.get(const.UNORDERED_LIST):
         shortcut = preferences.KEYS.get(const.UNORDERED_LIST)
-        tooltip = u"Create unordered list ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Create unordered list ({})".format(utility.key_to_text(shortcut))
         callback = lambda: toggle_unordered_list(editor)
         button = Button(const.UNORDERED_LIST, shortcut, tooltip, callback)
         place_button(editor, button)
 
     if p.get(const.ORDERED_LIST):
         shortcut = preferences.KEYS.get(const.ORDERED_LIST)
-        tooltip = u"Create ordered list ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Create ordered list ({})".format(utility.key_to_text(shortcut))
         callback = lambda: toggle_ordered_list(editor)
         button = Button(const.ORDERED_LIST, shortcut, tooltip, callback)
         place_button(editor, button)
 
     if p.get(const.STRIKETHROUGH):
         shortcut = preferences.KEYS.get(const.STRIKETHROUGH)
-        tooltip = u"Strikethrough text ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Strikethrough text ({})".format(utility.key_to_text(shortcut))
         button = Button(const.STRIKETHROUGH, shortcut, tooltip, editor.toggle_strikethrough)
         place_button(editor, button)
 
     # FIXME (neftas): think of better symbol to represent a <pre> block
     if p.get(const.PRE):
         shortcut = preferences.KEYS.get(const.PRE)
-        tooltip = u"Create a code block ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Create a code block ({})".format(utility.key_to_text(shortcut))
         callback = lambda: utility.wrap_in_tags(editor, "pre", p.get(const.CODE_CLASS))
         button = Button(const.PRE, shortcut, tooltip, callback)
         place_button(editor, button)
 
     if p.get(const.HORIZONTAL_RULE):
         shortcut = preferences.KEYS.get(const.HORIZONTAL_RULE)
-        tooltip = u"Create a horizontal rule ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Create a horizontal rule ({})".format(utility.key_to_text(shortcut))
         button = Button(const.HORIZONTAL_RULE, shortcut, tooltip, editor.toggle_horizontal_line)
         place_button(editor, button)
 
     if p.get(const.INDENT):
         shortcut = preferences.KEYS.get(const.INDENT)
-        tooltip = u"Indent text or list ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Indent text or list ({})".format(utility.key_to_text(shortcut))
         button = Button(const.INDENT, shortcut, tooltip, editor.toggle_indent)
         place_button(editor, button)
 
     if p.get(const.OUTDENT):
         shortcut = preferences.KEYS.get(const.OUTDENT)
-        tooltip = u"Outdent text or list ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Outdent text or list ({})".format(utility.key_to_text(shortcut))
         button = Button(const.OUTDENT, shortcut, tooltip, editor.toggle_outdent)
         place_button(editor, button)
 
     # FIXME (neftas): better symbol for <dl>
     if p.get(const.DEFINITION_LIST):
         shortcut = preferences.KEYS.get(const.DEFINITION_LIST)
-        tooltip = u"Create definition list ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Create definition list ({})".format(utility.key_to_text(shortcut))
         button = Button(const.DEFINITION_LIST, shortcut, tooltip, editor.toggle_definition_list)
         place_button(editor, button)
 
     if p.get(const.TABLE):
         shortcut = preferences.KEYS.get(const.TABLE)
-        tooltip = u"Create a table ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Create a table ({})".format(utility.key_to_text(shortcut))
         button = Button(const.TABLE, shortcut, tooltip, editor.toggle_table)
         place_button(editor, button)
 
     if p.get(const.KEYBOARD):
         shortcut = preferences.KEYS.get(const.KEYBOARD)
-        tooltip = u"Create a keyboard button ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Create a keyboard button ({})".format(utility.key_to_text(shortcut))
         callback = lambda: utility.wrap_in_tags(editor, "kbd")
         button = Button(const.KEYBOARD, shortcut, tooltip, callback)
         place_button(editor, button)
 
     if p.get(const.HYPERLINK):
         shortcut = preferences.KEYS.get(const.HYPERLINK)
-        tooltip = u"Insert link ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Insert link ({})".format(utility.key_to_text(shortcut))
         button1 = Button(const.HYPERLINK, shortcut, tooltip, editor.toggle_hyperlink)
         place_button(editor, button1)
 
         shortcut = preferences.KEYS.get(const.REMOVE_HYPERLINK)
-        tooltip = u"Unlink ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Unlink ({})".format(utility.key_to_text(shortcut))
         button2 = Button(const.REMOVE_HYPERLINK, shortcut, tooltip, editor.unlink)
         place_button(editor, button2)
 
     if p.get(const.BACKGROUND_COLOR):
         hilite_color = HiliteColor(editor, preferences)
         shortcut = preferences.KEYS.get(const.BACKGROUND_COLOR)
-        tooltip = u"Set background color ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Set background color ({})".format(utility.key_to_text(shortcut))
         button1 = Button(const.BACKGROUND_COLOR, shortcut, tooltip, hilite_color.apply_color, text=" ")
         hilite_color.setup_background_button(button1)
         place_button(editor, button1)
 
         shortcut = preferences.KEYS.get(const.BACKGROUND_COLOR_CHANGE)
-        tooltip = u"Change color ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Change color ({})".format(utility.key_to_text(shortcut))
         button2 = Button(const.BACKGROUND_COLOR_CHANGE,
                          shortcut,
                          tooltip,
@@ -182,46 +182,46 @@ def setup_buttons(editor):
 
     if p.get(const.BLOCKQUOTE):
         shortcut = preferences.KEYS.get(const.BLOCKQUOTE)
-        tooltip = u"Insert blockquote ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Insert blockquote ({})".format(utility.key_to_text(shortcut))
         button = Button(const.BLOCKQUOTE, shortcut, tooltip, editor.toggle_blockquote)
         place_button(editor, button)
 
     if p.get(const.TEXT_ALLIGN):
         shortcut = preferences.KEYS.get(const.TEXT_ALLIGN_FLUSH_LEFT)
-        tooltip = u"Align text left ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Align text left ({})".format(utility.key_to_text(shortcut))
         button1 = Button(const.TEXT_ALLIGN_FLUSH_LEFT, shortcut, tooltip, editor.justify_left)
         place_button(editor, button1)
 
         shortcut = preferences.KEYS.get(const.TEXT_ALLIGN_CENTERED)
-        tooltip = u"Align text center ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Align text center ({})".format(utility.key_to_text(shortcut))
         button2 = Button(const.TEXT_ALLIGN_CENTERED, shortcut, tooltip, editor.justify_center)
         place_button(editor, button2)
 
         shortcut = preferences.KEYS.get(const.TEXT_ALLIGN_FLUSH_RIGHT)
-        tooltip = u"Align text right ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Align text right ({})".format(utility.key_to_text(shortcut))
         button3 = Button(const.TEXT_ALLIGN_FLUSH_RIGHT, shortcut, tooltip, editor.justify_right)
         place_button(editor, button3)
 
         shortcut = preferences.KEYS.get(const.TEXT_ALLIGN_JUSTIFIED)
-        tooltip = u"Justify text ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Justify text ({})".format(utility.key_to_text(shortcut))
         button4 = Button(const.TEXT_ALLIGN_JUSTIFIED, shortcut, tooltip, editor.justify_full)
         place_button(editor, button4)
 
     if p.get(const.HEADING):
         shortcut = preferences.KEYS.get(const.HEADING)
-        tooltip = u"Insert heading ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Insert heading ({})".format(utility.key_to_text(shortcut))
         button = Button(const.HEADING, shortcut, tooltip, editor.toggle_heading)
         place_button(editor, button)
 
     if p.get(const.ABBREVIATION):
         shortcut = preferences.KEYS.get(const.ABBREVIATION)
-        tooltip = u"Insert abbreviation ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Insert abbreviation ({})".format(utility.key_to_text(shortcut))
         button = Button(const.ABBREVIATION, shortcut, tooltip, editor.toggle_abbreviation)
         place_button(editor, button)
 
     if p.get(const.MARKDOWN):
         shortcut = preferences.KEYS.get(const.MARKDOWN)
-        tooltip = u"Toggle Markdown ({})".format(utility.key_to_text(shortcut))
+        tooltip = "Toggle Markdown ({})".format(utility.key_to_text(shortcut))
         button = Button(const.MARKDOWN, shortcut, tooltip, editor.toggle_markdown)
         place_button(editor, button)
 
@@ -330,7 +330,7 @@ def toggle_markdown(editor):
     current_field = editor.currentField
     html_field = editor.note.fields[current_field]
     if not html_field:
-        html_field = u""
+        html_field = ""
     markdowner = Markdowner(editor, editor.parentWindow, editor.note, html_field, current_field, preferences)
     markdowner.start()
     editor.web.setFocus()

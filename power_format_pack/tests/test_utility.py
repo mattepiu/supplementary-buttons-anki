@@ -28,96 +28,96 @@ class UtilityTester(unittest.TestCase):
                           self.whitespace_regex, "&#32;", image)
 
     def test_replace_link_img_matches_accepts_russian_input(self):
-        image = u"![](изображение \(1\).jpg)"
-        expected = u"![](изображение&#32;\(1\).jpg)"
+        image = "![](изображение \(1\).jpg)"
+        expected = "![](изображение&#32;\(1\).jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex,
                                                   "&#32;",
                                                   image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_replaces_single_whitespace(self):
-        image = u"![](image \(1\).jpg)"
-        expected = u"![](image&#32;\(1\).jpg)"
+        image = "![](image \(1\).jpg)"
+        expected = "![](image&#32;\(1\).jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_replaces_link_with_whitespace(self):
-        image = u"[](image \(1\).jpg)"
+        image = "[](image \(1\).jpg)"
         expected = image
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", image)
         self.assertEqual(expected, actual, "Uncorrectly replaced whitespace in link with &#32;")
 
     def test_replace_link_img_matches_replaces_link_with_title(self):
-        image = u"[text](image \(1\).jpg)"
-        expected = u"[text](image \(1\).jpg)"
+        image = "[text](image \(1\).jpg)"
+        expected = "[text](image \(1\).jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", image)
         self.assertEqual(expected, actual, "Did uncorrectly replace whitespace with &#32;")
 
     def test_replace_link_img_matches_replaces_link_with_title_that_contains_whitespace(self):
-        image = u"[random text](image \(1\).jpg)"
+        image = "[random text](image \(1\).jpg)"
         expected = image
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", image)
         self.assertEqual(expected, actual, "Uncorrectly replaced whitespace in link with &#32;")
 
     def test_replace_link_img_matches_makes_no_changes_when_final_paren_is_missing(self):
-        image = u"[](image \(1\).jpg"
-        expected = u"[](image \(1\).jpg"
+        image = "[](image \(1\).jpg"
+        expected = "[](image \(1\).jpg"
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_does_not_replace_unescaped_left_parens(self):
-        image = u"[](image (1\).jpg"
-        expected = u"[](image (1\).jpg"
+        image = "[](image (1\).jpg"
+        expected = "[](image (1\).jpg"
         actual = utility.replace_link_img_matches(self.left_paren_regex, "&#32;", image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_returns_same_when_whitespace_before_opening_paren(self):
-        image = u"![] (image \(1\).jpg)"
-        expected = u"![] (image \(1\).jpg)"
+        image = "![] (image \(1\).jpg)"
+        expected = "![] (image \(1\).jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_replaces_whitespace_in_different_parts(self):
-        image = u"![](image \(1\) .jpg)"
-        expected = u"![](image&#32;\(1\)&#32;.jpg)"
+        image = "![](image \(1\) .jpg)"
+        expected = "![](image&#32;\(1\)&#32;.jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex,
                                                   "&#32;",
                                                   image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_replace_left_paren_with_char_entity(self):
-        image = u"![](image \(1\).jpg)"
-        expected = u"![](image &#40;1\).jpg)"
+        image = "![](image \(1\).jpg)"
+        expected = "![](image &#40;1\).jpg)"
         actual = utility.replace_link_img_matches(self.left_paren_regex,
                                                   "&#40;",
                                                   image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_replace_multiple_left_parens_with_char_entity(self):
-        image = u"![](image \(\(\(1\)\)\).jpg)"
-        expected = u"![](image &#40;&#40;&#40;1\)\)\).jpg)"
+        image = "![](image \(\(\(1\)\)\).jpg)"
+        expected = "![](image &#40;&#40;&#40;1\)\)\).jpg)"
         actual = utility.replace_link_img_matches(self.left_paren_regex,
                                                   "&#40;",
                                                   image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_replaces_multiple_escaped_right_parens(self):
-        image = u"![](image \(\(\(1\)\)\).jpg)"
-        expected = u"![](image \(\(\(1&#41;&#41;&#41;.jpg)"
+        image = "![](image \(\(\(1\)\)\).jpg)"
+        expected = "![](image \(\(\(1&#41;&#41;&#41;.jpg)"
         actual = utility.replace_link_img_matches(self.right_paren_regex,
                                                   "&#41;",
                                                   image)
         self.assertEqual(expected, actual)
 
     def test_replace_link_img_matches_replaces_whitespace_in_multiple_imgs(self):
-        image = u"random text before\n" + \
-                u"![](image \(1\).jpg)\n" + \
-                u"and more text\n" + \
-                u"![](image \(2\).jpg)"
-        expected = u"random text before\n" + \
-                   u"![](image&#32;\(1\).jpg)\n" + \
-                   u"and more text\n" + \
-                   u"![](image&#32;\(2\).jpg)"
+        image = "random text before\n" + \
+                "![](image \(1\).jpg)\n" + \
+                "and more text\n" + \
+                "![](image \(2\).jpg)"
+        expected = "random text before\n" + \
+                   "![](image&#32;\(1\).jpg)\n" + \
+                   "and more text\n" + \
+                   "![](image&#32;\(2\).jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex,
                                                   "&#32;",
                                                   image)
@@ -125,14 +125,14 @@ class UtilityTester(unittest.TestCase):
         self.assertEqual(len(expected), len(actual))
 
     def test_replace_link_img_matches_replaces_whitespace_and_parens_in_multiple_imgs(self):
-        image = u"random text before\n" + \
-                u"![](image \(1\).jpg)\n" + \
-                u"and more text\n" + \
-                u"![](image \(2\).jpg)"
-        expected = u"random text before\n" + \
-                   u"![](image&#32;&#40;1&#41;.jpg)\n" + \
-                   u"and more text\n" + \
-                   u"![](image&#32;&#40;2&#41;.jpg)"
+        image = "random text before\n" + \
+                "![](image \(1\).jpg)\n" + \
+                "and more text\n" + \
+                "![](image \(2\).jpg)"
+        expected = "random text before\n" + \
+                   "![](image&#32;&#40;1&#41;.jpg)\n" + \
+                   "and more text\n" + \
+                   "![](image&#32;&#40;2&#41;.jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex,
                                                   "&#32;",
                                                   image)
@@ -146,8 +146,8 @@ class UtilityTester(unittest.TestCase):
         self.assertEqual(len(expected), len(actual))
 
     def test_replace_link_img_matches_does_not_replace_whitespace_in_backticks(self):
-        image = u"begin `def x[R](f: => R)` end"
-        expected = u"begin `def x[R](f: => R)` end"
+        image = "begin `def x[R](f: => R)` end"
+        expected = "begin `def x[R](f: => R)` end"
         actual = utility.replace_link_img_matches(self.whitespace_regex,
                                                   "&#32;",
                                                   image)
@@ -155,7 +155,7 @@ class UtilityTester(unittest.TestCase):
         self.assertEqual(len(expected), len(actual))
 
     def test_replace_link_img_matches_does_not_replace_whitespace_in_code_blocks(self):
-        image = u"""
+        image = """
         hallo `welerd
 
 ```
@@ -172,7 +172,7 @@ and`
         self.assertEqual(len(expected), len(actual))
 
     def test_replace_link_img_matches_does_not_replace_whitespace_in_code_blocks_but_does_in_normal_link(self):
-        image = u"""
+        image = """
         hallo `welerd
 
 ```
@@ -182,7 +182,7 @@ hello world [](what about it) yes
 but here ![cat](cat (1).jpg) is a cat
 and`
 """
-        expected = u"""
+        expected = """
         hallo `welerd
 
 ```
@@ -199,7 +199,7 @@ and`
         self.assertEqual(len(expected), len(actual))
 
     def test_replace_link_img_matches_does_not_replace_whitespace_in_fenced_code_blocks(self):
-        image = u"""
+        image = """
 blah
 
 ```
@@ -214,7 +214,7 @@ def x[R](f: => R)
         self.assertEqual(len(expected), len(actual))
 
     def test_replace_link_img_matches_does_not_replace_whitespace_in_indented_code_blocks(self):
-        image = u"""
+        image = """
 blah
 
     def x[R](f: => R)
@@ -227,15 +227,15 @@ blah
         self.assertEqual(len(expected), len(actual))
 
     def test_replace_link_img_matches_only_replaces_image_links(self):
-        link = u"Only [one `primary key` per table](http://link.com)"
+        link = "Only [one `primary key` per table](http://link.com)"
         expected = link
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", link)
         self.assertEqual(expected, actual, "Replaced too much or too little!")
         self.assertEqual(len(expected), len(actual), "Length of actual actual does not match length of expected actual")
 
     def test_replace_link_img_matches_only_replaces_text_between_parentheses(self):
-        image = u"Only ![one `primary key` per table](file name.jpg)"
-        expected = u"Only ![one `primary key` per table](file&#32;name.jpg)"
+        image = "Only ![one `primary key` per table](file name.jpg)"
+        expected = "Only ![one `primary key` per table](file&#32;name.jpg)"
         actual = utility.replace_link_img_matches(self.whitespace_regex, "&#32;", image)
         self.assertEqual(expected, actual)
 
@@ -310,32 +310,32 @@ blah
         self.assertRaises(AssertionError, utility.escape_html_chars, s)
 
     def test_escape_html_chars_returns_correctly_escaped_string_when_input_is_russian(self):
-        s = u"об этом & о том"
-        expected = u"об этом &amp; о том"
+        s = "об этом & о том"
+        expected = "об этом &amp; о том"
         actual = utility.escape_html_chars(s)
         self.assertEqual(expected, actual)
 
     def test_escape_html_chars_returns_string_with_ampersand_escaped(self):
-        s = u"this&that"
-        expected = u"this&amp;that"
+        s = "this&that"
+        expected = "this&amp;that"
         actual = utility.escape_html_chars(s)
         self.assertEqual(expected, actual)
 
     def test_escape_html_chars_returns_string_with_multiple_ampersands_escaped(self):
-        s = u"this&that&so"
-        expected = u"this&amp;that&amp;so"
+        s = "this&that&so"
+        expected = "this&amp;that&amp;so"
         actual = utility.escape_html_chars(s)
         self.assertEqual(expected, actual)
 
     def test_escape_html_chars_returns_empty_string_when_empty_string_passed(self):
-        s = u""
-        expected = u""
+        s = ""
+        expected = ""
         actual = utility.escape_html_chars(s)
         self.assertEqual(expected, actual)
 
     def test_escape_html_chars_returns_string_with_five_chars_that_should_be_escaped(self):
-        s = u"this&that\"so\'and<and>"
-        expected = u"this&amp;that&quot;so&apos;and&lt;and&gt;"
+        s = "this&that\"so\'and<and>"
+        expected = "this&amp;that&quot;so&apos;and&lt;and&gt;"
         actual = utility.escape_html_chars(s)
         self.assertEqual(expected, actual)
 
@@ -349,20 +349,20 @@ blah
         self.assertRaises(AssertionError, utility.get_alignment, s)
 
     def test_check_alignment_returns_center_when_input_is_colon_dash_colon(self):
-        s = u":-:"
-        expected = u"center"
+        s = ":-:"
+        expected = "center"
         actual = utility.get_alignment(s)
         self.assertEqual(expected, actual)
 
     def test_check_alignment_returns_left_when_input_is_not_recognized_string(self):
-        s = u"random"
-        expected = u"left"
+        s = "random"
+        expected = "left"
         actual = utility.get_alignment(s)
         self.assertEqual(expected, actual)
 
     def test_check_alignment_returns_left_when_input_is_empty_string(self):
-        s = u""
-        expected = u"left"
+        s = ""
+        expected = "left"
         actual = utility.get_alignment(s)
         self.assertEqual(expected, actual)
 
@@ -375,43 +375,43 @@ blah
         self.assertRaises(AssertionError, utility.check_size_heading, s)
 
     def test_check_size_heading_returns_minus_one_when_input_is_empty_string(self):
-        s = u""
+        s = ""
         expected = -1
         actual = utility.check_size_heading(s)
         self.assertEqual(expected, actual)
 
     def test_check_size_heading_returns_minus_one_when_input_is_random_text(self):
-        s = u"random text"
+        s = "random text"
         expected = -1
         actual = utility.check_size_heading(s)
         self.assertEqual(expected, actual)
 
     def test_check_size_heading_returns_six_when_input_is_seven_hashes(self):
-        s = u"#######heading"
+        s = "#######heading"
         expected = 6
         actual = utility.check_size_heading(s)
         self.assertEqual(expected, actual)
 
     def test_check_size_heading_returns_three_when_input_is_seven_hashes_with_a_space(self):
-        s = u"### ####heading"
+        s = "### ####heading"
         expected = 3
         actual = utility.check_size_heading(s)
         self.assertEqual(expected, actual)
 
     def test_check_size_heading_returns_three_when_input_starts_with_space(self):
-        s = u"    ###heading"
+        s = "    ###heading"
         expected = 3
         actual = utility.check_size_heading(s)
         self.assertEqual(expected, actual)
 
     def test_check_size_heading_returns_three_when_input_starts_with_tab(self):
-        s = u"\t###heading"
+        s = "\t###heading"
         expected = 3
         actual = utility.check_size_heading(s)
         self.assertEqual(expected, actual)
 
     def test_check_size_heading_returns_three_when_input_starts_with_newline(self):
-        s = u"\n###heading"
+        s = "\n###heading"
         expected = 3
         actual = utility.check_size_heading(s)
         self.assertEqual(expected, actual)
@@ -422,48 +422,48 @@ blah
         self.assertRaises(AssertionError, utility.strip_leading_whitespace, s)
 
     def test_strip_leading_whitespace_deletes_tab_from_start_of_string(self):
-        s = u"\ttext"
-        expected = u"text"
+        s = "\ttext"
+        expected = "text"
         actual = utility.strip_leading_whitespace(s)
         self.assertEqual(expected, actual)
 
     def test_strip_leading_whitespace_deletes_multiple_nbsp_from_start_of_string(self):
-        s = u"&nbsp;&nbsp;&nbsp;text"
-        expected = u"text"
+        s = "&nbsp;&nbsp;&nbsp;text"
+        expected = "text"
         actual = utility.strip_leading_whitespace(s)
         self.assertEqual(expected, actual)
 
     def test_strip_leading_whitespace_does_not_delete_non_leading_nbsp(self):
-        s = u"text&nbsp;text"
-        expected = u"text&nbsp;text"
+        s = "text&nbsp;text"
+        expected = "text&nbsp;text"
         actual = utility.strip_leading_whitespace(s)
         self.assertEqual(expected, actual)
 
     def test_strip_leading_whitespace_returns_same_string_when_input_is_empty_string(self):
-        s = u""
-        expected = u""
+        s = ""
+        expected = ""
         actual = utility.strip_leading_whitespace(s)
         self.assertEqual(expected, actual)
 
     # normalize_user_prefs
     def test_normalize_user_prefs_adds_key_that_is_not_in_user_prefs(self):
-        default_prefs = dict(a=u"one")
+        default_prefs = dict(a="one")
         user_prefs = dict()
-        expected = dict(a=u"one")
+        expected = dict(a="one")
         actual = PrefHelper.normalize_user_prefs(default_prefs, user_prefs)
         self.assertEqual(expected, actual)
 
     def test_normalize_user_prefs_deletes_key_that_is_not_in_default_prefs(self):
         default_prefs = dict()
-        user_prefs = dict(a=u"one")
+        user_prefs = dict(a="one")
         expected = dict()
         actual = PrefHelper.normalize_user_prefs(default_prefs, user_prefs)
         self.assertEqual(expected, actual)
 
     def test_normalize_user_prefs_add_and_delete_key_from_user_dict(self):
-        default_prefs = dict(b=u"two")
-        user_prefs = dict(a=u"one")
-        expected = dict(b=u"two")
+        default_prefs = dict(b="two")
+        user_prefs = dict(a="one")
+        expected = dict(b="two")
         actual = PrefHelper.normalize_user_prefs(default_prefs, user_prefs)
         self.assertEqual(expected, actual)
 
@@ -481,84 +481,84 @@ blah
         self.assertRaises(AssertionError, utility.split_string, text, splitlist)
 
     def test_split_string_returns_list_with_text_when_input_starts_with_delim(self):
-        text = u"!text"
-        splitlist = u"!"
+        text = "!text"
+        splitlist = "!"
         expected = ["text"]
         actual = utility.split_string(text, splitlist)
         self.assertEqual(expected, actual)
 
     def test_split_string_returns_empty_list_when_text_is_only_delims(self):
-        text = u"!@#"
-        splitlist = u"!@#"
+        text = "!@#"
+        splitlist = "!@#"
         expected = []
         actual = utility.split_string(text, splitlist)
         self.assertEqual(expected, actual)
 
     def test_split_string_returns_list_with_items_using_multiple_delims(self):
-        text = u"!one@two#three$"
-        splitlist = u"!@#$"
-        expected = [u"one", u"two", u"three"]
+        text = "!one@two#three$"
+        splitlist = "!@#$"
+        expected = ["one", "two", "three"]
         actual = utility.split_string(text, splitlist)
         self.assertEqual(expected, actual)
 
     def test_split_string_returns_list_with_single_item_when_splitlist_is_empty_str(self):
-        text = u"!one@two#three$"
-        splitlist = u""
-        expected = [u"!one@two#three$"]
+        text = "!one@two#three$"
+        splitlist = ""
+        expected = ["!one@two#three$"]
         actual = utility.split_string(text, splitlist)
         self.assertEqual(expected, actual)
 
     # validate_key_sequence
     @staticmethod
     def test_validate_key_sequence_multiple_tests():
-        assert utility.validate_key_sequence(u"") == u""
-        assert utility.validate_key_sequence(None) == u""
-        assert utility.validate_key_sequence(u"-") == u"-"
-        assert utility.validate_key_sequence(u"a") == u"a"
-        assert utility.validate_key_sequence(u"ctrl+,") == u"ctrl+,"
-        assert utility.validate_key_sequence(u"ctrl-,") == u"ctrl+,"
-        assert utility.validate_key_sequence(u",+ctrl") == u"ctrl+,"
-        assert utility.validate_key_sequence(u"p-Alt-Ctrl") == u"ctrl+alt+p"
-        assert utility.validate_key_sequence(u",+ctr") == u""
-        assert utility.validate_key_sequence(u"alt+shift+greka+q") == u""
-        assert utility.validate_key_sequence(u"alt+shift+greka+q", u"darwin") == ""
-        assert utility.validate_key_sequence(u"alt+shift+ctrl") == u""
-        assert utility.validate_key_sequence(u"alt+alt+ctrl+p") == u"ctrl+alt+p"
-        assert utility.validate_key_sequence(u"alt-shift++") == u"shift+alt++"
-        assert utility.validate_key_sequence(u"alt-shift+++") == u"shift+alt++"
-        assert utility.validate_key_sequence(u"alt-alt------shift+p") == u"shift+alt+p"
-        assert utility.validate_key_sequence(u"alt-alt------shift+p", u"darwin") == u"shift+alt+p"
-        print "OF INTEREST:"
-        assert utility.validate_key_sequence(u"Q-Meta-CTRL", u"darwin") == u"ctrl+meta+q"
-        assert utility.validate_key_sequence(u"MeTA---META---ShIFT++++", u"darwin") == u"meta+shift++"
-        assert utility.validate_key_sequence(u"ctrl alt p", u"darwin") == u""
-        assert utility.validate_key_sequence(u"ctrl+1") == u"ctrl+1"
-        assert utility.validate_key_sequence(u"ctrl+!") == u"ctrl+!"
-        assert utility.validate_key_sequence(u"F12") == u"f12"
-        assert utility.validate_key_sequence(u"F12+Shift") == u"shift+f12"
-        assert utility.validate_key_sequence(u"F12+F11") == u""
-        assert utility.validate_key_sequence(u"F12+a") == ""
-        assert utility.validate_key_sequence(u"ctrl+shift+alt+meta+f5", u"darwin") == u"ctrl+meta+shift+alt+f5"
-        assert utility.validate_key_sequence(u"shift+F12") == u"shift+f12"
+        assert utility.validate_key_sequence("") == ""
+        assert utility.validate_key_sequence(None) == ""
+        assert utility.validate_key_sequence("-") == "-"
+        assert utility.validate_key_sequence("a") == "a"
+        assert utility.validate_key_sequence("ctrl+,") == "ctrl+,"
+        assert utility.validate_key_sequence("ctrl-,") == "ctrl+,"
+        assert utility.validate_key_sequence(",+ctrl") == "ctrl+,"
+        assert utility.validate_key_sequence("p-Alt-Ctrl") == "ctrl+alt+p"
+        assert utility.validate_key_sequence(",+ctr") == ""
+        assert utility.validate_key_sequence("alt+shift+greka+q") == ""
+        assert utility.validate_key_sequence("alt+shift+greka+q", "darwin") == ""
+        assert utility.validate_key_sequence("alt+shift+ctrl") == ""
+        assert utility.validate_key_sequence("alt+alt+ctrl+p") == "ctrl+alt+p"
+        assert utility.validate_key_sequence("alt-shift++") == "shift+alt++"
+        assert utility.validate_key_sequence("alt-shift+++") == "shift+alt++"
+        assert utility.validate_key_sequence("alt-alt------shift+p") == "shift+alt+p"
+        assert utility.validate_key_sequence("alt-alt------shift+p", "darwin") == "shift+alt+p"
+        print("OF INTEREST:")
+        assert utility.validate_key_sequence("Q-Meta-CTRL", "darwin") == "ctrl+meta+q"
+        assert utility.validate_key_sequence("MeTA---META---ShIFT++++", "darwin") == "meta+shift++"
+        assert utility.validate_key_sequence("ctrl alt p", "darwin") == ""
+        assert utility.validate_key_sequence("ctrl+1") == "ctrl+1"
+        assert utility.validate_key_sequence("ctrl+!") == "ctrl+!"
+        assert utility.validate_key_sequence("F12") == "f12"
+        assert utility.validate_key_sequence("F12+Shift") == "shift+f12"
+        assert utility.validate_key_sequence("F12+F11") == ""
+        assert utility.validate_key_sequence("F12+a") == ""
+        assert utility.validate_key_sequence("ctrl+shift+alt+meta+f5", "darwin") == "ctrl+meta+shift+alt+f5"
+        assert utility.validate_key_sequence("shift+F12") == "shift+f12"
 
     # check_user_keybindings
     def test_check_user_keybindings_return_default_upon_invalid_user_keybinding(self):
-        invalid_keybinding = {u"a": u"ctrl-iota-a"}
-        default_keybindings = {u"a": u"ctrl-alt-del"}
+        invalid_keybinding = {"a": "ctrl-iota-a"}
+        default_keybindings = {"a": "ctrl-alt-del"}
         expected = default_keybindings
         actual = utility.check_user_keybindings(default_keybindings, invalid_keybinding)
         self.assertEqual(expected, actual)
 
     def test_check_user_keybindings_return_new_upon_valid_user_keybinding(self):
-        valid_keybinding = {u"a": u"ctrl-shift-a"}
-        default_keybindings = {u"a": u"ctrl-alt-del"}
-        expected = {u"a": u"ctrl+shift+a"}
+        valid_keybinding = {"a": "ctrl-shift-a"}
+        default_keybindings = {"a": "ctrl-alt-del"}
+        expected = {"a": "ctrl+shift+a"}
         actual = utility.check_user_keybindings(default_keybindings, valid_keybinding)
         self.assertEqual(expected, actual)
 
     def test_check_user_keybindings_return_empty_dict_when_user_keybindings_is_empty(self):
         valid_keybinding = dict()
-        default_keybindings = dict(a=u"ctrl-alt-del")
+        default_keybindings = dict(a="ctrl-alt-del")
         expected = dict()
         actual = utility.check_user_keybindings(default_keybindings, valid_keybinding)
         self.assertEqual(expected, actual)
@@ -596,81 +596,81 @@ blah
         self.assertRaises(AssertionError, utility.strip_html_from_markdown, html)
 
     def test_convert_html_to_markdown_returns_empty_string_when_input_is_empty_string(self):
-        html = u""
-        expected = u""
+        html = ""
+        expected = ""
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_returns_empty_string_when_input_is_empty_string_and_keep_empty_lines_is_true(
             self):
-        html = u""
-        expected = u""
+        html = ""
+        expected = ""
         actual = utility.strip_html_from_markdown(html, True)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_leading_dash(self):
-        html = u"<div>- aaa</div>"
-        expected = u"- aaa\n"
+        html = "<div>- aaa</div>"
+        expected = "- aaa\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_leading_plus_sign(self):
-        html = u"<div>+ aaa</div>"
-        expected = u"+ aaa\n"
+        html = "<div>+ aaa</div>"
+        expected = "+ aaa\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_backward_slash(self):
-        html = u"<div>`:\`</div>"
-        expected = u"`:\`\n"
+        html = "<div>`:\`</div>"
+        expected = "`:\`\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_backward_slash_followed_by_dash(self):
-        html = u"\- one<div>\- two</div>"
-        expected = u"\- one\n\- two\n"
+        html = "\- one<div>\- two</div>"
+        expected = "\- one\n\- two\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_backward_slash_followed_by_underscore(self):
-        html = u"\_ one<div>\_ two</div>"
-        expected = u"\_ one\n\_ two\n"
+        html = "\_ one<div>\_ two</div>"
+        expected = "\_ one\n\_ two\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_dots(self):
-        html = u"1. one<div>2. two</div>"
-        expected = u"1. one\n2. two\n"
+        html = "1. one<div>2. two</div>"
+        expected = "1. one\n2. two\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_dots_with_keep_empty_lines(self):
-        html = u"1. one<div>2. two</div>"
-        expected = u"1. one\n\n2. two\n"
+        html = "1. one<div>2. two</div>"
+        expected = "1. one\n\n2. two\n"
         actual = utility.strip_html_from_markdown(html, True)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_curly_braces(self):
-        html = u"{ and { and } and }"
-        expected = u"{ and { and } and }\n"
+        html = "{ and { and } and }"
+        expected = "{ and { and } and }\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_curly_braces_in_divs(self):
-        html = u"{ and<div>{ and</div><div>} and }</div>"
-        expected = u"{ and\n{ and\n} and }\n"
+        html = "{ and<div>{ and</div><div>} and }</div>"
+        expected = "{ and\n{ and\n} and }\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_inverted_comma(self):
-        html = u"` and<div>`</div>"
-        expected = u"` and\n`\n"
+        html = "` and<div>`</div>"
+        expected = "` and\n`\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
     def test_convert_html_to_markdown_does_not_escape_hash_sign(self):
-        html = u"# one<div># two</div>"
-        expected = u"# one\n# two\n"
+        html = "# one<div># two</div>"
+        expected = "# one\n# two\n"
         actual = utility.strip_html_from_markdown(html)
         self.assertEqual(expected, actual)
 
@@ -680,75 +680,75 @@ blah
         self.assertRaises(AssertionError, utility.convert_clean_md_to_html, s)
 
     def test_convert_clean_md_to_html_returns_correct_html_when_input_is_correct_md(self):
-        s = u"    :::python\n    def fn(): pass"
-        expected = u"<div>&nbsp; &nbsp; :::python</div><div>&nbsp; &nbsp; def fn(): pass</div>"
+        s = "    :::python\n    def fn(): pass"
+        expected = "<div>&nbsp; &nbsp; :::python</div><div>&nbsp; &nbsp; def fn(): pass</div>"
         actual = utility.convert_clean_md_to_html(s)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_empty_string_when_input_is_empty_string(self):
-        s = u""
-        expected = u""
+        s = ""
+        expected = ""
         actual = utility.convert_clean_md_to_html(s)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_div_with_break_when_input_is_solely_whitespace(self):
-        s = u"    "
-        expected = u"<div><br /></div>"
+        s = "    "
+        expected = "<div><br /></div>"
         actual = utility.convert_clean_md_to_html(s)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_empty_div_when_input_is_solely_newline(self):
-        s = u"\n"
-        expected = u"<div></div>"
+        s = "\n"
+        expected = "<div></div>"
         actual = utility.convert_clean_md_to_html(s)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_div_with_break_when_input_is_solely_newline_and_put_breaks_is_true(self):
-        s = u"\n"
-        expected = u"<div><br /></div>"
+        s = "\n"
+        expected = "<div><br /></div>"
         actual = utility.convert_clean_md_to_html(s, put_breaks=True)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_div_with_char_when_input_is_char_with_newline(self):
-        s = u"a\n"
-        expected = u"<div>a</div>"
+        s = "a\n"
+        expected = "<div>a</div>"
         actual = utility.convert_clean_md_to_html(s)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_two_divs_with_char_when_input_is_newline_with_char(self):
-        s = u"\na"
-        expected = u"<div></div><div>a</div>"
+        s = "\na"
+        expected = "<div></div><div>a</div>"
         actual = utility.convert_clean_md_to_html(s)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_text_in_divs_when_input_contains_only_text(self):
-        s = u"random"
-        expected = u"<div>random</div>"
+        s = "random"
+        expected = "<div>random</div>"
         actual = utility.convert_clean_md_to_html(s, put_breaks=True)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_two_divs_when_linebreak_in_input_text(self):
-        s = u"random\nrandom"
-        expected = u"<div>random</div><div>random</div>"
+        s = "random\nrandom"
+        expected = "<div>random</div><div>random</div>"
         actual = utility.convert_clean_md_to_html(s, put_breaks=True)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_correct_leading_whitespace_when_input_has_leading_whitespace(self):
-        s = u"    random"
-        expected = u"<div>&nbsp; &nbsp; random</div>"
+        s = "    random"
+        expected = "<div>&nbsp; &nbsp; random</div>"
         actual = utility.convert_clean_md_to_html(s, put_breaks=True)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_correct_leading_whitespace_when_input_has_two_lines_with_leading_whitespace(
             self):
-        s = u"    random\n    more"
-        expected = u"<div>&nbsp; &nbsp; random</div><div>&nbsp; &nbsp; more</div>"
+        s = "    random\n    more"
+        expected = "<div>&nbsp; &nbsp; random</div><div>&nbsp; &nbsp; more</div>"
         actual = utility.convert_clean_md_to_html(s, put_breaks=True)
         self.assertEqual(expected, actual)
 
     def test_convert_clean_md_to_html_returns_correct_leading_whitespace_when_input_is_russian(self):
-        s = u"    пизза"
-        expected = u"<div>&nbsp; &nbsp; пизза</div>"
+        s = "    пизза"
+        expected = "<div>&nbsp; &nbsp; пизза</div>"
         actual = utility.convert_clean_md_to_html(s, put_breaks=True)
         self.assertEqual(expected, actual)
 
@@ -764,39 +764,39 @@ blah
 
     def test_get_md_data_from_string_returns_empty_unicode_string_when_input_is_empty_string(self):
         s = ""
-        expected = u""
+        expected = ""
         actual = utility.get_md_data_from_string(s)
         self.assertEqual(expected, actual)
 
     def test_get_md_data_from_string_returns_empty_string_when_input_does_not_contain_any_marker(self):
-        s = u"<div></div>"
-        expected = u""
+        s = "<div></div>"
+        expected = ""
         actual = utility.get_md_data_from_string(s)
         self.assertEqual(expected, actual)
 
     def test_get_md_data_from_string_returns_empty_string_when_input_does_not_contain_end_marker(self):
-        s = u"<div></div><!----SBAdata{data:data}"
-        expected = u""
+        s = "<div></div><!----SBAdata{data:data}"
+        expected = ""
         actual = utility.get_md_data_from_string(s)
         self.assertEqual(expected, actual)
 
     def test_get_md_data_from_string_returns_dict_when_markers_are_present(self):
         d = dict(a="one")
         encoded = base64.b64encode(json.dumps(d))
-        s = u"<div></div><!----SBAdata:{}---->".format(encoded)
+        s = "<div></div><!----SBAdata:{}---->".format(encoded)
         expected = encoded
         actual = utility.get_md_data_from_string(s)
         self.assertEqual(expected, actual)
 
     def test_get_md_data_from_string_returns_random_string_in_data_part(self):
-        s = u"<div></div><!----SBAdata:randomtext---->"
-        expected = u"randomtext"
+        s = "<div></div><!----SBAdata:randomtext---->"
+        expected = "randomtext"
         actual = utility.get_md_data_from_string(s)
         self.assertEqual(expected, actual)
 
     def test_get_md_data_from_string_returns_empty_string_when_data_part_is_empty(self):
-        s = u"<div></div><!----SBAdata:---->"
-        expected = u""
+        s = "<div></div><!----SBAdata:---->"
+        expected = ""
         actual = utility.get_md_data_from_string(s)
         self.assertEqual(expected, actual)
 
@@ -807,12 +807,12 @@ blah
 
     def test_decompress_and_json_load_returns_empty_unicode_string_when_input_is_empty_string(self):
         s = ""
-        expected = u""
+        expected = ""
         actual = utility.decompress_and_json_load(s)
         self.assertEqual(expected, actual)
 
     def test_decompress_and_json_load_throws_type_error_when_padding_of_base64_data_is_invalid(self):
-        data = u"randomtext"  # lenght of string should be multiples of 4
+        data = "randomtext"  # lenght of string should be multiples of 4
         # so `randomtext==` would not throw an error
         # because it is padded correctly
         expected = "corrupted"
@@ -820,20 +820,20 @@ blah
         self.assertEqual(expected, actual)
 
     def test_decompress_and_json_load_returns_corrupted_when_base64_data_is_invalid_json(self):
-        data = u"randomtext=="
+        data = "randomtext=="
         expected = "corrupted"
         actual = utility.decompress_and_json_load(data)
         self.assertEqual(expected, actual)
 
     def test_decompress_and_json_load_returns_corrupted_when_base64_data_contains_non_ascii_chars(self):
-        data = u"ëandomtext=="
+        data = "ëandomtext=="
         expected = "corrupted"
         actual = utility.decompress_and_json_load(data)
         self.assertEqual(expected, actual)
 
     def test_decompress_and_json_load_returns_valid_json_when_base64_data_is_valid(self):
-        d = dict(a=u"one")
-        data = unicode(base64.b64encode(json.dumps(d)))
+        d = dict(a="one")
+        data = str(base64.b64encode(json.dumps(d)))
         expected = d
         actual = utility.decompress_and_json_load(data)
         self.assertEqual(expected, actual)
@@ -841,13 +841,13 @@ blah
     # json_dump_and_compress
     def test_json_dump_and_compress_returns_base64_string_when_input_is_dict(self):
         data = dict(a="one")
-        expected = unicode(base64.b64encode(json.dumps(data)))
+        expected = str(base64.b64encode(json.dumps(data)))
         actual = utility.json_dump_and_compress(data)
         self.assertEqual(expected, actual)
 
     def test_json_dump_and_compress_returns_base64_string_when_input_is_russian(self):
-        data = u"привет"
-        expected = unicode(base64.b64encode(json.dumps(data)))
+        data = "привет"
+        expected = str(base64.b64encode(json.dumps(data)))
         actual = utility.json_dump_and_compress(data)
         self.assertEqual(expected, actual)
 
@@ -858,15 +858,15 @@ blah
         self.assertRaises(AssertionError, utility.is_same_markdown, s1, s2)
 
     def test_is_same_markdown_returns_true_when_markdown_with_russian_is_same(self):
-        s1 = u"ещё **один** тест"
+        s1 = "ещё **один** тест"
         expected = True
         actual = utility.is_same_markdown(s1, s1)
         self.assertEqual(expected, actual)
 
     # remove_white_space
     def test_remove_white_space_returns_empty_unicode_string_when_input_is_empty_string(self):
-        s = u""
-        expected = u""
+        s = ""
+        expected = ""
         actual = utility.remove_white_space(s)
         self.assertEqual(expected, actual)
 
@@ -875,8 +875,8 @@ blah
         self.assertRaises(AssertionError, utility.remove_white_space, s)
 
     def test_remove_white_space_returns_unicode_string_when_input_is_russian(self):
-        s = u"ой ты Пушкин, ой ты сукин сын"
-        expected = u"ойтыПушкин,ойтысукинсын"
+        s = "ой ты Пушкин, ой ты сукин сын"
+        expected = "ойтыПушкин,ойтысукинсын"
         actual = utility.remove_white_space(s)
         self.assertEqual(expected, actual)
 
@@ -890,7 +890,7 @@ blah
                           md1)
 
     def test_put_md_data_in_json_format_returns_dict_when_md_contain_russian(self):
-        md = u"один"
+        md = "один"
         expected = dict(id=1, isconverted=True, md=md, lastmodified="")
         actual = utility.markdown_data_to_json(1, True, md)
         self.assertEqual(expected.get("md"), actual.get("md"))
@@ -898,7 +898,7 @@ blah
 
     # remove_whitespace_before_abbreviation_definition
     def test_remove_whitespace_before_abbreviation_definition_does_not_make_changes_when_no_leading_whitespace(self):
-        s = u"""The HTML specification
+        s = """The HTML specification
 is maintained by the W3C.
 
 *[HTML]: Hyper Text Markup Language
@@ -912,70 +912,70 @@ is maintained by the W3C.
         self.assertRaises(AssertionError, utility.remove_whitespace_before_abbreviation_definition, s)
 
     def test_remove_whitespace_before_abbreviation_definition_returns_same_if_input_is_empty_string(self):
-        s = u""
-        expected = u""
+        s = ""
+        expected = ""
         self.assertEqual(s, expected)
 
     def test_remove_whitespace_before_abbreviation_definition_removes_leading_whitespace_after_newline(self):
-        s = u"adsfsdfsd\n  \n  *[adsfsdfsd]: PSV!!!\n"
-        expected = u'adsfsdfsd\n  \n*[adsfsdfsd]: PSV!!!\n'
+        s = "adsfsdfsd\n  \n  *[adsfsdfsd]: PSV!!!\n"
+        expected = 'adsfsdfsd\n  \n*[adsfsdfsd]: PSV!!!\n'
         actual = utility.remove_whitespace_before_abbreviation_definition(s)
         self.assertEqual(expected, actual)
 
     def test_remove_whitespace_before_abbreviation_definition_removes_leading_whitespace_with_multiple_abbreviations(
             self):
-        s = u"adsfsdfsd and PSV\n  \n  *[adsfsdfsd]: PSV!!!" + \
-            u"\n  *[PSV]: Philips Sport Vereniging\n"
-        expected = u"adsfsdfsd and PSV\n  \n*[adsfsdfsd]: PSV!!!" + \
-                   u"\n*[PSV]: Philips Sport Vereniging\n"
+        s = "adsfsdfsd and PSV\n  \n  *[adsfsdfsd]: PSV!!!" + \
+            "\n  *[PSV]: Philips Sport Vereniging\n"
+        expected = "adsfsdfsd and PSV\n  \n*[adsfsdfsd]: PSV!!!" + \
+                   "\n*[PSV]: Philips Sport Vereniging\n"
         actual = utility.remove_whitespace_before_abbreviation_definition(s)
         self.assertEqual(expected, actual)
 
     def test_remove_whitespace_before_abbreviation_definition_does_not_remove_leading_whitespace_when_pattern_does_not_match(
             self):
-        s = u"adsfsdfsd and PSV\n  \n  [adsfsdfsd]: PSV!!!"
-        expected = u"adsfsdfsd and PSV\n  \n  [adsfsdfsd]: PSV!!!"
+        s = "adsfsdfsd and PSV\n  \n  [adsfsdfsd]: PSV!!!"
+        expected = "adsfsdfsd and PSV\n  \n  [adsfsdfsd]: PSV!!!"
         actual = utility.remove_whitespace_before_abbreviation_definition(s)
         self.assertEqual(expected, actual)
 
     # remove_leading_whitespace_from_dd_element
     def test_remove_leading_whitespace_from_dd_element_removes_whitespace_when_input_is_valid(self):
-        s = u"**a**\n    : first letter\n  \n**b**\n    : second letter\n  \n"
-        expected = u"**a**\n: first letter\n  \n**b**\n: second letter\n  \n"
+        s = "**a**\n    : first letter\n  \n**b**\n    : second letter\n  \n"
+        expected = "**a**\n: first letter\n  \n**b**\n: second letter\n  \n"
         actual = utility.remove_leading_whitespace_from_dd_element(s)
         self.assertEqual(expected, actual)
 
     def test_remove_leading_whitespace_from_dd_element_does_not_remove_whitespace_when_input_contains_three_spaces(
             self):
-        s = u"**a**\n   : first letter\n  \n**b**\n   : second letter\n  \n"
-        expected = u"**a**\n   : first letter\n  \n**b**\n   : second letter\n  \n"
+        s = "**a**\n   : first letter\n  \n**b**\n   : second letter\n  \n"
+        expected = "**a**\n   : first letter\n  \n**b**\n   : second letter\n  \n"
         actual = utility.remove_leading_whitespace_from_dd_element(s)
         self.assertEqual(expected, actual)
 
     def test_remove_leading_whitespace_from_dd_element_does_not_remove_whitespace_when_input_does_not_contain_colons(
             self):
-        s = u"**a**\n     first letter\n  \n**b**\n     second letter\n  \n"
-        expected = u"**a**\n     first letter\n  \n**b**\n     second letter\n  \n"
+        s = "**a**\n     first letter\n  \n**b**\n     second letter\n  \n"
+        expected = "**a**\n     first letter\n  \n**b**\n     second letter\n  \n"
         actual = utility.remove_leading_whitespace_from_dd_element(s)
         self.assertEqual(expected, actual)
 
     def test_remove_leading_whitespace_from_dd_element_does_not_remove_whitespace_when_input_does_not_contain_space_after_colon(
             self):
-        s = u"**a**\n    :first letter\n  \n**b**\n    :second letter\n  \n"
-        expected = u"**a**\n    :first letter\n  \n**b**\n    :second letter\n  \n"
+        s = "**a**\n    :first letter\n  \n**b**\n    :second letter\n  \n"
+        expected = "**a**\n    :first letter\n  \n**b**\n    :second letter\n  \n"
         actual = utility.remove_leading_whitespace_from_dd_element(s)
         self.assertEqual(expected, actual)
 
     def test_remove_leading_whitespace_from_dd_element_removes_whitespace_from_correct_input_but_does_not_from_incorrect_input_in_same_string(
             self):
-        s = u"**a**\n    : first letter\n  \n**b**\n    :second letter\n  \n"
-        expected = u"**a**\n: first letter\n  \n**b**\n    :second letter\n  \n"
+        s = "**a**\n    : first letter\n  \n**b**\n    :second letter\n  \n"
+        expected = "**a**\n: first letter\n  \n**b**\n    :second letter\n  \n"
         actual = utility.remove_leading_whitespace_from_dd_element(s)
         self.assertEqual(expected, actual)
 
     def test_remove_leading_whitespace_from_dd_element_inserts_newline_between_two_dd_elements(self):
-        s = u"**a**\n    : first letter\n**b**\n    :second letter\n  \n"
-        expected = u"**a**\n: first letter\n\n**b**\n    :second letter\n  \n"
+        s = "**a**\n    : first letter\n**b**\n    :second letter\n  \n"
+        expected = "**a**\n: first letter\n\n**b**\n    :second letter\n  \n"
         actual = utility.remove_leading_whitespace_from_dd_element(s, True)
         self.assertEqual(expected, actual)
 
@@ -985,43 +985,43 @@ is maintained by the W3C.
         self.assertRaises(AssertionError, utility.put_colons_in_html_def_list, s)
 
     def test_put_colons_in_html_def_list_returns_empty_string_when_input_is_empty_string(self):
-        s = u""
+        s = ""
         expected = s
         actual = utility.put_colons_in_html_def_list(s)
         self.assertEqual(expected, actual)
 
     def test_put_colons_in_html_def_list_returns_string_with_colons_when_input_is_correct(self):
-        s = u'\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
+        s = '\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
             '<dd align="left">one</dd>\n<dt align="left"><strong>' + \
             'b</strong></dt>\n<dd align="left">two</dd>\n</dl>'
-        expected = u'\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
+        expected = '\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
                    '<dd align="left">: one</dd>\n<dt align="left"><strong>' + \
                    'b</strong></dt>\n<dd align="left">: two</dd>\n</dl>'
         actual = utility.put_colons_in_html_def_list(s)
         self.assertEqual(expected, actual)
 
     def test_put_colons_in_html_def_list_returns_string_with_colons_when_input_nodevalue_is_empty(self):
-        s = u'\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
+        s = '\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
             '<dd align="left"></dd>\n<dt align="left"><strong>' + \
             'b</strong></dt>\n<dd align="left"></dd>\n</dl>'
-        expected = u'\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
+        expected = '\n<dl>\n<dt align="left"><strong>a</strong></dt>\n' + \
                    '<dd align="left">: </dd>\n<dt align="left"><strong>' + \
                    'b</strong></dt>\n<dd align="left">: </dd>\n</dl>'
         actual = utility.put_colons_in_html_def_list(s)
         self.assertEqual(expected, actual)
 
     def test_put_colons_in_html_def_list_should_return_unaltered_string_when_input_does_not_contain_dt(self):
-        s = u'\n<dl>\n' + \
+        s = '\n<dl>\n' + \
             '<dd align="left"></dd>\n<dd align="left">text</dd>\n</dl>'
-        expected = u'\n<dl>\n' + \
+        expected = '\n<dl>\n' + \
                    '<dd align="left"></dd>\n<dd align="left">text</dd>\n</dl>'
         actual = utility.put_colons_in_html_def_list(s)
         self.assertEqual(expected, actual)
 
     def test_put_colons_in_html_def_list_should_return_colon_after_dt_but_nothing_when_not_dt(self):
-        s = u'\n<dl>\n' + \
+        s = '\n<dl>\n' + \
             '<dt></dt><dd align="left"></dd>\n<dd align="left">text</dd>\n</dl>'
-        expected = u'\n<dl>\n' + \
+        expected = '\n<dl>\n' + \
                    '<dt></dt><dd align="left">: </dd>\n<dd align="left">text</dd>\n</dl>'
         actual = utility.put_colons_in_html_def_list(s)
         self.assertEqual(expected, actual)

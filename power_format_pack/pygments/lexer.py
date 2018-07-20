@@ -9,7 +9,7 @@
     :license: BSD, see LICENSE for details.
 """
 
-from __future__ import print_function
+
 
 import re
 import sys
@@ -170,11 +170,11 @@ class Lexer(object):
                 text = decoded
             else:
                 text = text.decode(self.encoding)
-                if text.startswith(u'\ufeff'):
-                    text = text[len(u'\ufeff'):]
+                if text.startswith('\\ufeff'):
+                    text = text[len('\\ufeff'):]
         else:
-            if text.startswith(u'\ufeff'):
-                text = text[len(u'\ufeff'):]
+            if text.startswith('\\ufeff'):
+                text = text[len('\\ufeff'):]
 
         # text now *is* a unicode string
         text = text.replace('\r\n', '\n')
@@ -311,7 +311,7 @@ def bygroups(*args):
         for i, action in enumerate(args):
             if action is None:
                 continue
-            elif type(action) is _TokenType:
+            elif isinstance(action, _TokenType):
                 data = match.group(i + 1)
                 if data:
                     yield match.start(i + 1), action, data
@@ -429,7 +429,7 @@ class RegexLexerMeta(LexerMeta):
 
     def _process_token(cls, token):
         """Preprocess the token component of a token definition."""
-        assert type(token) is _TokenType or callable(token), \
+        assert isinstance(token, _TokenType) or callable(token), \
             'token type must be simple type or callable, not %r' % (token,)
         return token
 
@@ -470,7 +470,7 @@ class RegexLexerMeta(LexerMeta):
 
     def _process_state(cls, unprocessed, processed, state):
         """Preprocess a single state definition."""
-        assert type(state) is str, "wrong state name %r" % state
+        assert isinstance(state, str), "wrong state name %r" % state
         assert state[0] != '#', "invalid state name %r" % state
         if state in processed:
             return processed[state]
@@ -493,7 +493,7 @@ class RegexLexerMeta(LexerMeta):
                 tokens.append((re.compile('').match, None, new_state))
                 continue
 
-            assert type(tdef) is tuple, "wrong rule def %r" % tdef
+            assert isinstance(tdef, tuple), "wrong rule def %r" % tdef
 
             try:
                 rex = cls._process_regex(tdef[0], rflags, state)
@@ -624,12 +624,12 @@ class RegexLexer(Lexer):
         tokendefs = self._tokens
         statestack = list(stack)
         statetokens = tokendefs[statestack[-1]]
-        while 1:
+        while True:
             for rexmatch, action, new_state in statetokens:
                 m = rexmatch(text, pos)
                 if m:
                     if action is not None:
-                        if type(action) is _TokenType:
+                        if isinstance(action, _TokenType):
                             yield pos, action, m.group()
                         else:
                             for item in action(self, m):
@@ -660,7 +660,7 @@ class RegexLexer(Lexer):
                         # at EOL, reset state to "root"
                         statestack = ['root']
                         statetokens = tokendefs['root']
-                        yield pos, Text, u'\n'
+                        yield pos, Text, '\n'
                         pos += 1
                         continue
                     yield pos, Error, text[pos]
@@ -703,12 +703,12 @@ class ExtendedRegexLexer(RegexLexer):
             ctx = context
             statetokens = tokendefs[ctx.stack[-1]]
             text = ctx.text
-        while 1:
+        while True:
             for rexmatch, action, new_state in statetokens:
                 m = rexmatch(text, ctx.pos, ctx.end)
                 if m:
                     if action is not None:
-                        if type(action) is _TokenType:
+                        if isinstance(action, _TokenType):
                             yield ctx.pos, action, m.group()
                             ctx.pos = m.end()
                         else:
@@ -745,7 +745,7 @@ class ExtendedRegexLexer(RegexLexer):
                         # at EOL, reset state to "root"
                         ctx.stack = ['root']
                         statetokens = tokendefs['root']
-                        yield ctx.pos, Text, u'\n'
+                        yield ctx.pos, Text, '\n'
                         ctx.pos += 1
                         continue
                     yield ctx.pos, Error, text[ctx.pos]
@@ -854,17 +854,17 @@ class ProfilingRegexLexer(RegexLexer):
         rawdata = self.__class__._prof_data.pop()
         data = sorted(((s, repr(r).strip('u\'').replace('\\\\', '\\')[:65],
                         n, 1000 * t, 1000 * t / n)
-                       for ((s, r), (n, t)) in rawdata.items()),
+                       for ((s, r), (n, t)) in list(rawdata.items())),
                       key=lambda x: x[self._prof_sort_index],
                       reverse=True)
         sum_total = sum(x[3] for x in data)
 
         print()
-        print('Profiling result for %s lexing %d chars in %.3f ms' %
-              (self.__class__.__name__, len(text), sum_total))
-        print('=' * 110)
-        print('%-20s %-64s ncalls  tottime  percall' % ('state', 'regex'))
-        print('-' * 110)
+        print(('Profiling result for %s lexing %d chars in %.3f ms' %
+              (self.__class__.__name__, len(text), sum_total)))
+        print(('=' * 110))
+        print(('%-20s %-64s ncalls  tottime  percall' % ('state', 'regex')))
+        print(('-' * 110))
         for d in data:
-            print('%-20s %-65s %5d %8.4f %8.4f' % d)
-        print('=' * 110)
+            print(('%-20s %-65s %5d %8.4f %8.4f' % d))
+        print(('=' * 110))

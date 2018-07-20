@@ -21,7 +21,7 @@ import re
 
 from PyQt4 import QtGui
 
-import utility
+from . import utility
 from anki.utils import json
 from power_format_pack import markdown, const
 from power_format_pack.markdown.extensions.abbr import AbbrExtension
@@ -44,7 +44,7 @@ class Markdowner(object):
     """
 
     def __init__(self, editor, parent_window, note, html, current_field, preferences):
-        assert isinstance(html, unicode), "Input `html` is not Unicode"
+        assert isinstance(html, str), "Input `html` is not Unicode"
         self.c              = preferences.CONFIG
         self.p              = preferences.PREFS
         self.editor         = editor
@@ -141,7 +141,7 @@ class Markdowner(object):
         """
         self.editor.web.eval("""
             document.getElementById('f%s').innerHTML = %s;
-        """ % (field, json.dumps(unicode(markup))))
+        """ % (field, json.dumps(str(markup))))
 
     @staticmethod
     def manage_style(editor, field_no):
@@ -311,7 +311,7 @@ class Markdowner(object):
         u'<p>this <strong>was</strong> a triumph</p>'
         """
 
-        assert isinstance(clean_md, unicode), "Input `clean_md` is not Unicode"
+        assert isinstance(clean_md, str), "Input `clean_md` is not Unicode"
 
         new_html = markdown.markdown(clean_md, output_format="xhtml1",
             extensions=[
@@ -330,7 +330,7 @@ class Markdowner(object):
                 SaneListExtension()
             ], lazy_ol=False)
 
-        assert isinstance(new_html, unicode)
+        assert isinstance(new_html, str)
 
         return new_html
 

@@ -81,7 +81,7 @@ smartypants.py license:
 '''
 
 
-from __future__ import unicode_literals
+
 from . import Extension
 from ..inlinepatterns import HtmlPattern, HTML_RE
 from ..odict import OrderedDict
@@ -91,7 +91,7 @@ from ..treeprocessors import InlineProcessor
 # Constants for quote education.
 punctClass = r"""[!"#\$\%'()*+,-.\/:;<=>?\@\[\\\]\^_`{|}~]"""
 endOfWordClass = r"[\s.,;:!?)]"
-closeClass = "[^\ \t\r\n\[\{\(\-\u0002\u0003]"
+closeClass = "[^\ \t\r\n\[\{\(\-\\u0002\\u0003]"
 
 openingQuotesBase = (
     '(\s'               # a  whitespace char

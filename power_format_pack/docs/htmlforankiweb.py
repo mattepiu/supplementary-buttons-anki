@@ -7,7 +7,7 @@ import os
 import sys
 import string
 import inspect
-from _version import __version__
+from ._version import __version__
 
 
 class HTMLForAnkiWeb(object):
@@ -44,7 +44,7 @@ class HTMLForAnkiWeb(object):
         buttons = self.soup.findAll(attrs={"class": "formatting-button"})
         for button in buttons:
             button_id = button.get("id").replace("-", "_")
-            self.template_dict[button_id] = unicode(button.parent)
+            self.template_dict[button_id] = str(button.parent)
 
     def get_headings(self):
         """
@@ -53,7 +53,7 @@ class HTMLForAnkiWeb(object):
         for tag in self.soup.findAll(name="h2", attrs={"class": "heading"}):
             tag_id = tag.get("id").replace("-", "_")
             if tag_id == "formatting_buttons": continue
-            self.template_dict[tag_id] = unicode(tag)
+            self.template_dict[tag_id] = str(tag)
             next_elem = tag.nextSibling
             while True:
                 if next_elem is None:
@@ -62,7 +62,7 @@ class HTMLForAnkiWeb(object):
                         or not next_elem.name.startswith("h2")):
                     self.template_dict[tag_id] = \
                             self.template_dict.get(tag_id, "") + \
-                            unicode(next_elem)
+                            str(next_elem)
                     next_elem = next_elem.nextSibling
                 else:
                     break
@@ -88,7 +88,7 @@ class HTMLForAnkiWeb(object):
                 "p": self.replace_with_children
         }
         valid_tags = ("img", "a", "b", "i", "code", "ol", "ul", "li")
-        for key, value in self.template_dict.iteritems():
+        for key, value in list(self.template_dict.items()):
             local_soup = BeautifulSoup.BeautifulSoup(value)
             all_tags = set()
             for tag in local_soup.findAll():
@@ -97,7 +97,7 @@ class HTMLForAnkiWeb(object):
                 callback = replacement_dict.get(tag)
                 if callback:
                     callback(local_soup, tag)
-            self.template_dict[key] = unicode(local_soup)
+            self.template_dict[key] = str(local_soup)
 
     def replace_tag_with_other(self, soup_obj, old_name):
         replacement_dict = {
@@ -236,8 +236,8 @@ if __name__ == "__main__":
     html = webanki.create_template()
     path = os.path.join(os.path.dirname(os.path.abspath(
         inspect.getfile(inspect.currentframe()))), "ankiweb.html")
-    print "Path is: {!r}".format(path)
+    print(("Path is: {!r}".format(path)))
     with open(path, "w") as f:
         f.write(html)
-        print "Written {!r}".format(path)
-    print "Succesfully written file. Exiting..."
+        print(("Written {!r}".format(path)))
+    print("Succesfully written file. Exiting...")

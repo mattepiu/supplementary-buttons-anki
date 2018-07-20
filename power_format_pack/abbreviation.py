@@ -21,7 +21,7 @@ import string
 import random
 
 from PyQt4 import QtGui
-import utility
+from . import utility
 
 
 class Abbreviation(object):
@@ -101,10 +101,10 @@ class Abbreviation(object):
         text = utility.escape_html_chars(text)
         title = utility.escape_html_chars(title)
         # unicode
-        assert isinstance(text, unicode)
-        assert isinstance(title, unicode)
+        assert isinstance(text, str)
+        assert isinstance(title, str)
         # create new tag
-        div_id = "".join(random.choice(string.ascii_letters) for _ in xrange(20))
+        div_id = "".join(random.choice(string.ascii_letters) for _ in range(20))
         self.editor_instance.web.eval("""\
                 var abbr = document.createElement('abbr');
                 var text = document.createTextNode('%s');

@@ -81,12 +81,12 @@ class PrefHelper(object):
 
         result_dict = user_prefs
         # add items that are not in prefs, but should be (e.g. after update)
-        for key, value in default_prefs.iteritems():
+        for key, value in list(default_prefs.items()):
             user_val = user_prefs.get(key)
             if user_val is None:
                 result_dict[key] = value
         # delete items in prefs that should not be there (e.g. after update)
-        for key in user_prefs.keys()[:]:
+        for key in list(user_prefs.keys())[:]:
             if default_prefs.get(key) is None:
                 del result_dict[key]
 
@@ -136,36 +136,36 @@ class PrefHelper(object):
         # the default keybindings that are used when no custom keybindings
         # are found, or when the user keybindings are corrupted
         _default_keybindings_linux_windows = {
-                const.CODE:                         QtGui.QKeySequence(u"ctrl+,"),
-                const.UNORDERED_LIST:               QtGui.QKeySequence(u"ctrl+["),
-                const.ORDERED_LIST:                 QtGui.QKeySequence(u"ctrl+]"),
-                const.STRIKETHROUGH:                QtGui.QKeySequence(u"alt+shift+5"),
-                const.PRE:                          QtGui.QKeySequence(u"ctrl+."),
-                const.HORIZONTAL_RULE:              QtGui.QKeySequence(u"ctrl+shift+alt+_"),
-                const.INDENT:                       QtGui.QKeySequence(u"ctrl+shift+]"),
-                const.OUTDENT:                      QtGui.QKeySequence(u"ctrl+shift+["),
-                const.DEFINITION_LIST:              QtGui.QKeySequence(u"ctrl+shift+d"),
-                const.TABLE:                        QtGui.QKeySequence(u"ctrl+shift+3"),
-                const.KEYBOARD:                     QtGui.QKeySequence(u"ctrl+shift+k"),
-                const.HYPERLINK:                    QtGui.QKeySequence(u"ctrl+shift+h"),
-                const.REMOVE_HYPERLINK:             QtGui.QKeySequence(u"ctrl+shift+alt+h"),
-                const.BACKGROUND_COLOR:             QtGui.QKeySequence(u"ctrl+shift+b"),
-                const.BACKGROUND_COLOR_CHANGE:      QtGui.QKeySequence(u"ctrl+shift+n"),
-                const.BLOCKQUOTE:                   QtGui.QKeySequence(u"ctrl+shift+y"),
-                const.TEXT_ALLIGN_FLUSH_LEFT:       QtGui.QKeySequence(u"ctrl+shift+alt+l"),
-                const.TEXT_ALLIGN_FLUSH_RIGHT:      QtGui.QKeySequence(u"ctrl+shift+alt+r"),
-                const.TEXT_ALLIGN_JUSTIFIED:        QtGui.QKeySequence(u"ctrl+shift+alt+s"),
-                const.TEXT_ALLIGN_CENTERED:         QtGui.QKeySequence(u"ctrl+shift+alt+b"),
-                const.HEADING:                      QtGui.QKeySequence(u"ctrl+alt+1"),
-                const.ABBREVIATION:                 QtGui.QKeySequence(u"shift+alt+a"),
-                const.MARKDOWN:                     QtGui.QKeySequence(u"ctrl+shift+0")
+                const.CODE:                         QtGui.QKeySequence("ctrl+,"),
+                const.UNORDERED_LIST:               QtGui.QKeySequence("ctrl+["),
+                const.ORDERED_LIST:                 QtGui.QKeySequence("ctrl+]"),
+                const.STRIKETHROUGH:                QtGui.QKeySequence("alt+shift+5"),
+                const.PRE:                          QtGui.QKeySequence("ctrl+."),
+                const.HORIZONTAL_RULE:              QtGui.QKeySequence("ctrl+shift+alt+_"),
+                const.INDENT:                       QtGui.QKeySequence("ctrl+shift+]"),
+                const.OUTDENT:                      QtGui.QKeySequence("ctrl+shift+["),
+                const.DEFINITION_LIST:              QtGui.QKeySequence("ctrl+shift+d"),
+                const.TABLE:                        QtGui.QKeySequence("ctrl+shift+3"),
+                const.KEYBOARD:                     QtGui.QKeySequence("ctrl+shift+k"),
+                const.HYPERLINK:                    QtGui.QKeySequence("ctrl+shift+h"),
+                const.REMOVE_HYPERLINK:             QtGui.QKeySequence("ctrl+shift+alt+h"),
+                const.BACKGROUND_COLOR:             QtGui.QKeySequence("ctrl+shift+b"),
+                const.BACKGROUND_COLOR_CHANGE:      QtGui.QKeySequence("ctrl+shift+n"),
+                const.BLOCKQUOTE:                   QtGui.QKeySequence("ctrl+shift+y"),
+                const.TEXT_ALLIGN_FLUSH_LEFT:       QtGui.QKeySequence("ctrl+shift+alt+l"),
+                const.TEXT_ALLIGN_FLUSH_RIGHT:      QtGui.QKeySequence("ctrl+shift+alt+r"),
+                const.TEXT_ALLIGN_JUSTIFIED:        QtGui.QKeySequence("ctrl+shift+alt+s"),
+                const.TEXT_ALLIGN_CENTERED:         QtGui.QKeySequence("ctrl+shift+alt+b"),
+                const.HEADING:                      QtGui.QKeySequence("ctrl+alt+1"),
+                const.ABBREVIATION:                 QtGui.QKeySequence("shift+alt+a"),
+                const.MARKDOWN:                     QtGui.QKeySequence("ctrl+shift+0")
         }
         # Mac OS keybindings are the same as Linux/Windows bindings,
         # except for the following
         _default_keybindings_macosx = \
             copy.deepcopy(_default_keybindings_linux_windows)
-        _default_keybindings_macosx[const.CODE] = QtGui.QKeySequence(u"ctrl+shift+,")
-        _default_keybindings_macosx[const.PRE] = QtGui.QKeySequence(u"ctrl+shift+.")
+        _default_keybindings_macosx[const.CODE] = QtGui.QKeySequence("ctrl+shift+,")
+        _default_keybindings_macosx[const.PRE] = QtGui.QKeySequence("ctrl+shift+.")
 
         if isMac:
             return _default_keybindings_macosx
@@ -211,7 +211,7 @@ class PrefHelper(object):
         Return `True` if `one` and `other` contain different values for the
         same key, `False` if all values for the same keys are equal.
         """
-        for k, v in one.iteritems():
+        for k, v in list(one.items()):
             if one.get(k) != other.get(k):
                 return True
         return False

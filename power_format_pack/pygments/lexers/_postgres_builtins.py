@@ -511,7 +511,7 @@ PLPGSQL_KEYWORDS = (
 if __name__ == '__main__':  # pragma: no cover
     import re
     try:
-        from urllib import urlopen
+        from urllib.request import urlopen
     except ImportError:
         from urllib.request import urlopen
 
@@ -569,8 +569,7 @@ if __name__ == '__main__':  # pragma: no cover
                     if not t: continue
                     dt.add(" ".join(t.split()))
 
-        dt = list(dt)
-        dt.sort()
+        dt = sorted(dt)
         return dt
 
     def parse_pseudos(f):

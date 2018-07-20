@@ -11,7 +11,7 @@ from power_format_pack.hyperlink import Hyperlink
 
 class HyperlinkTester(unittest.TestCase):
     def setUp(self):
-        print "Setting up HyperlinkTester..."
+        print("Setting up HyperlinkTester...")
         Hyperlink.__init__ = self.hyperlink_custom__init__
         self.hyperlink = Hyperlink("text")
 
@@ -24,36 +24,36 @@ class HyperlinkTester(unittest.TestCase):
         self.assertRaises(AssertionError, self.hyperlink.create_anchor, url, text);
 
     def test_create_anchor_should_return_anchor_when_input_is_valid_text(self):
-        url         = u"text"
-        text        = u"random"
+        url         = "text"
+        text        = "random"
         result      = self.hyperlink.create_anchor(url, text)
-        expected    = u"<a href=\"text\">random</a>"
+        expected    = "<a href=\"text\">random</a>"
         self.assertEqual(expected, result)
 
     def test_create_anchor_should_return_anchor_when_url_is_empty_string(self):
-        url         = u""
-        text        = u"random"
+        url         = ""
+        text        = "random"
         result      = self.hyperlink.create_anchor(url, text)
-        expected    = u"<a href=\"\">random</a>"
+        expected    = "<a href=\"\">random</a>"
         self.assertEqual(expected, result)
 
     def test_create_anchor_should_return_anchor_when_url_is_russian(self):
-        url         = u"ничё, пацаны, пробьёмся!"
-        text        = u"random"
+        url         = "ничё, пацаны, пробьёмся!"
+        text        = "random"
         result      = self.hyperlink.create_anchor(url, text)
-        expected    = u"<a href=\"{0}\">{1}</a>".format(url, text)
+        expected    = "<a href=\"{0}\">{1}</a>".format(url, text)
         self.assertEqual(expected, result)
 
     def test_create_anchor_should_return_anchor_when_url_is_valid_url(self):
-        url         = u"https://www.google.com"
-        text        = u"random"
+        url         = "https://www.google.com"
+        text        = "random"
         result      = self.hyperlink.create_anchor(url, text)
-        expected    = u"<a href=\"{0}\">{1}</a>".format(url, text)
+        expected    = "<a href=\"{0}\">{1}</a>".format(url, text)
         self.assertEqual(expected, result)
 
     def test_create_anchor_should_break_html_when_html_injection_is_used(self):
-        url         = u"</a>"
-        text        = u"random"
+        url         = "</a>"
+        text        = "random"
         result      = self.hyperlink.create_anchor(url, text)
-        expected    = u"<a href=\"{0}\">{1}</a>".format(url, text)
+        expected    = "<a href=\"{0}\">{1}</a>".format(url, text)
         self.assertEqual(expected, result)
